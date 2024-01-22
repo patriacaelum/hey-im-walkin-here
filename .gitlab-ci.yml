@@ -1,0 +1,26 @@
+stages:
+  - build
+
+variables:
+  GODOT_VERSION: "4.2"
+  GODOT_RELEASE: "stable"
+  GODOT_FILE_EXTENSION: "_linux.x86_64"
+
+build:
+  before_script:
+    - mkdir build
+    - cp ~/${GODOT} build/
+    - mkdir -p ${DIR_GODOT_EXPORT_TEMPLATES}
+    - cp ~/templates/* ${DIR_GODOT_EXPORT_TEMPLATES}
+  image: patriacaelum/godot:latest
+  only:
+    - development
+    - main
+    - merge_requests
+  script:
+    - make all
+  stage: build
+  variables:
+    GODOT: "Godot_v$GODOT_VERSION-$GODOT_RELEASE$GODOT_FILE_EXTENSION"
+    DIR_GODOT_EXPORT_TEMPLATES: "~/.local/share/godot/$GODOT_VERSION.$GODOT_RELEASE"
+
