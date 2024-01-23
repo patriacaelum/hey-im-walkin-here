@@ -1,20 +1,26 @@
-extends Node
 class_name State
+extends Node
+# Base `State` class that is meant to child nodes of the `StateMachine` class.
 
 
-enum STATE {
+signal finished
+signal property_set(state: STATENAME, property: StringName, value)
+signal state_changed(state: STATENAME)
+
+# Each child class should register its state name in this enum.
+enum STATENAME {
     NULL,
 }
 
-
-# The state should emit this when its action is complete.
-signal finished
-signal property_set(state: STATE, property: StringName, value)
-signal state_changed(state: STATE)
+# Each child class should set its state name in its `_init` method.
+var state_name: STATENAME = STATENAME.NULL
 
 
-func get_class_name() -> String:
-    return ""
+func _ready() -> void:
+    assert(
+        self.state_name != STATENAME.NULL,
+        "Each child class of `State` must set and register its state name",
+    )
 
 
 # Set the internal parameters when entering the state.
@@ -36,6 +42,3 @@ func notify(event: InputEvent) -> void:
 func update(delta: float) -> void:
     pass
 
-
-func _ready() -> void:
-    assert(self.get_class_name() != "", "A `State` child class is missing its name")
