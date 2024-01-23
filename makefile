@@ -151,7 +151,7 @@ linux: ${GODOT} ${GODOT_EXPORT_TEMPLATE_LINUX}
 	@echo
 	@tput setaf 7
 	@mkdir -p ${DIR_BUILD_LINUX}
-	${GODOT} -v --headless --export-release "Linux/X11" ../${APP_LINUX} ${GODOT_PROJECT}
+	${GODOT} --verbose --headless --export-release "Linux/X11" ../${APP_LINUX} ${GODOT_PROJECT}
 	@tput setaf 2
 	@echo
 	@echo "------------------------"
@@ -171,7 +171,7 @@ macos: ${GODOT} ${GODOT_EXPORT_TEMPLATE_MACOS}
 	@echo
 	@tput setaf 7
 	@mkdir -p ${DIR_BUILD_MACOS}
-	${GODOT} -v --headless --export-release "macOS" ../${APP_MACOS} ${GODOT_PROJECT}
+	${GODOT} --verbose --headless --export-release "macOS" ../${APP_MACOS} ${GODOT_PROJECT}
 	@tput setaf 2
 	@echo
 	@echo "------------------------"
@@ -191,7 +191,7 @@ windows: ${GODOT} ${GODOT_EXPORT_TEMPLATE_WINDOWS}
 	@echo
 	@tput setaf 7
 	@mkdir -p ${DIR_BUILD_WINDOWS}
-	${GODOT} -v --headless --export-release "Windows Desktop" ../${APP_WINDOWS} ${GODOT_PROJECT}
+	${GODOT} --verbose --headless --export-release "Windows Desktop" ../${APP_WINDOWS} ${GODOT_PROJECT}
 	@tput setaf 2
 	@echo
 	@echo "--------------------------"

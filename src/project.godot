@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="Godot Template"
+config/description="Template for starting gamedev projects in Godot."
+config/version="0.0.1"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GLOBALS="*res://scripts/globals.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
