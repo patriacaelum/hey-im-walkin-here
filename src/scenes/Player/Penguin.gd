@@ -5,6 +5,7 @@ signal penguin_collision(body)
 
 var walking: bool = false
 var armour: bool = false
+var animation_state: String = "walking"
 
 var globals;
 var UPGRADES_ENUM;
@@ -30,9 +31,22 @@ func _physics_process(delta: float) -> void:
 		self.velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	self.move_and_slide()
+	$AnimationPlayer.play(animation_state)
 
 func _on_area_2d_body_entered(body):
 	penguin_collision.emit(body);
+
+func play_timed_animation(animation: String, time: float) -> void:
+	print("playing animation")
+	$AnimationChangeTimer.wait_time = time
+	$AnimationChangeTimer.start()
+	
+	animation_state = animation
+	await $AnimationChangeTimer.timeout
+	animation_state = "walking"
+
+
+	
 
 func set_armour(value: bool) -> void:
 	armour = value
@@ -50,4 +64,7 @@ func _apply_upgrade(upgrade):
 		self.set_armour(true)
 	
 	
+
+
+
 

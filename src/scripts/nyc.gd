@@ -66,6 +66,9 @@ func _on_car_spawn_timer_timeout() -> void:
 	$CarSpawnTimer.start(0.2)
 
 
+func _on_banana_peel_boost(time):
+	$Penguin.play_timed_animation("slipping", time)
+
 func __spawn_banana_peels(y_min: int) -> void:
 	for i in range(self.banana_peels_per_block):
 		var bp: BananaPeel = BananaPeelScene.instantiate()
@@ -74,3 +77,4 @@ func __spawn_banana_peels(y_min: int) -> void:
 			randi_range(y_min, y_min + int(self.get_viewport_rect().size.y)),
 		)
 		self.add_child(bp)
+
