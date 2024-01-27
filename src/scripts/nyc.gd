@@ -32,7 +32,14 @@ func _on_ui_upgrade_purchased(upgrade) -> void:
 
 func _on_car_spawn_timer_timeout() -> void:
 	var car: Car = CarScene.instantiate()
-	car.speed = 150
-	car.position = Vector2(-car.POS_X_BUFFER, 256 + 128 * randi_range(0, 10))
+	var side: int = sign(randf() - 0.5)
+
+	car.speed = -side * randi_range(car.SPEED_MIN, car.SPEED_MAX)
+	var midpoint: int = self.get_viewport_rect().size.x / 2
+	car.position = Vector2(
+		midpoint + side * (midpoint + car.POS_X_BUFFER),
+		$Penguin.position.y + 256 + 128 * randi_range(0, 15)
+	)
 	self.add_child(car)
-	$CarSpawnTimer.start(0.5)
+
+	$CarSpawnTimer.start(0.2)
