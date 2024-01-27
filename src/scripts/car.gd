@@ -10,6 +10,8 @@ signal crashed
 var pos: Vector2
 var broken: bool = false
 
+const SPEED_MAX: int = 150
+const SPEED_MIN: int = 500
 const POS_X_BUFFER: int = 256
 
 
@@ -18,7 +20,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	self.position.x += speed * delta
+	self.position.x += self.speed * delta
 
 	if self.__out_of_bounds():
 		self.queue_free()

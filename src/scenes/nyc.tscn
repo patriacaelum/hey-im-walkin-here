@@ -17,7 +17,7 @@ currency = 2
 position = Vector2(636, 57)
 
 [node name="Camera2D" type="Camera2D" parent="Penguin"]
-position = Vector2(1, 2)
+position = Vector2(0, 150)
 limit_top = 0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
