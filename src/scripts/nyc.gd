@@ -6,6 +6,7 @@ var CarScene: PackedScene = preload("res://scenes/car.tscn")
 var banana_peels_per_block: int = 15
 
 var banana_peel_block: int = 0
+var fancy_car_spawn_rate: float = 0.2
 
 
 func _ready() -> void:
@@ -55,12 +56,17 @@ func _on_car_spawn_timer_timeout() -> void:
 	var car: Car = CarScene.instantiate()
 	var side: int = sign(randf() - 0.5)
 
+	var car_type: Car.CAR_TYPE = Car.CAR_TYPE.NORMAL
+	if randf() < self.fancy_car_spawn_rate:
+		car_type = Car.CAR_TYPE.FANCY
+
 	car.speed = -side * randi_range(car.SPEED_MIN, car.SPEED_MAX)
 	var midpoint: int = int(self.get_viewport_rect().size.x / 2)
 	car.position = Vector2(
 		midpoint + side * (midpoint + car.POS_X_BUFFER),
 		$Penguin.position.y + 256 + 128 * randi_range(0, 15)
 	)
+	car.set_sprite(car_type)
 	$Cars.add_child(car)
 
 	$CarSpawnTimer.start(0.2)
