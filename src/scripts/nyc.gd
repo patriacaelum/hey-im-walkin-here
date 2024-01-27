@@ -22,7 +22,8 @@ func _on_crash_penguin(body) -> void:
 	# Destroy armour on penguin
 	if body in $Cars.get_children():
 		if $Penguin.armour:
-			$Penguin.armour = false
+			print("armour being destroyed")
+			$Penguin.set_armour(false)
 		else:
 			print("Penguin is dead")
 	

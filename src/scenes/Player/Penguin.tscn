@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctae8ynk80ucy"]
+[gd_scene load_steps=6 format=3 uid="uid://ctae8ynk80ucy"]
 
 [ext_resource type="Script" path="res://scenes/Player/Penguin.gd" id="1_18p7e"]
 [ext_resource type="Texture2D" uid="uid://u2dstmoqwg0y" path="res://assets/characters/Sprite_Penguin.png" id="2_6xhs7"]
+[ext_resource type="PackedScene" uid="uid://byjn0k125nf7b" path="res://scenes/objects/Grandma.tscn" id="3_gs3d2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7sv"]
 size = Vector2(45, 66)
@@ -26,5 +27,8 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-13, -9)
 shape = SubResource("RectangleShape2D_48fc7")
+
+[node name="Grandma" parent="." instance=ExtResource("3_gs3d2")]
+position = Vector2(25, 14)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

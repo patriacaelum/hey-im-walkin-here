@@ -46,7 +46,7 @@ func update_upgrade_buttons() -> void:
 func _on_purchased_upgrade_button(price: int, upgrade_num: int) -> void:
 	self.spend_currency(price)
 	self.update_upgrade_buttons()
-	self.upgrade_purchased.emit(UPGRADES_ENUM.find_key(upgrade_num))
+	self.upgrade_purchased.emit(upgrade_num)
 
 
 func _on_free_money_pressed() -> void:
