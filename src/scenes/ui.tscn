@@ -40,10 +40,18 @@ layout_mode = 2
 upgrade_name = "Upgrade4"
 
 [node name="FreeMoney" type="Button" parent="."]
-offset_left = 1161.0
-offset_top = 672.0
-offset_right = 1260.0
-offset_bottom = 703.0
+offset_left = 1170.0
+offset_top = 9.0
+offset_right = 1269.0
+offset_bottom = 40.0
 text = "Free Money"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 1012.0
+offset_top = 661.0
+offset_right = 1268.0
+offset_bottom = 703.0
+theme_override_font_sizes/font_size = 24
+text = "Hey, I'm walkin' here!"
 
 [connection signal="pressed" from="FreeMoney" to="." method="_on_free_money_pressed"]
