@@ -25,6 +25,20 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_ui_started() -> void:
+	# Reset level to start
+	$Penguin._reset()
+	$Penguin/Camera2D.position = Vector2(0, 0)
+	
+	for child: Node in $Cars.get_children():
+		if child is Car:
+			child.queue_free()
+			
+	for child: Node in self.get_children():
+		if child is BananaPeel:
+			child.queue_free()
+	banana_peel_block = 0
+	
+	# Begin
 	$Penguin.walking = true
 	$CarSpawnTimer.start(2)
 
@@ -34,14 +48,11 @@ func _on_crash_penguin(body) -> void:
 	# Destroy armour on penguin
 	if body in $Cars.get_children():
 		if $Penguin.armour:
-			print("armour being destroyed")
 			$Penguin.set_armour(false)
 		else:
-			print("Penguin is dead")
-	
-	# Add money to UI
-	# if penguin has no more armour:
-	#     end current launch and show UI
+			$Penguin.walking = false
+			$CarSpawnTimer.stop()
+			$UI.show()
 	
 	# Stop the car
 	if 'crash' in body:
