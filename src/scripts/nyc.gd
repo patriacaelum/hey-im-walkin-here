@@ -15,7 +15,13 @@ func _on_start_ui() -> void:
 
 func _on_crash_penguin(car) -> void:
 	# Destroy armour on penguin
+	# Add money to UI
 	# if penguin has no more armour:
 	#     end current launch and show UI
 	# Update car state to crash
+	pass
+
+
+func _on_upgrade_purchased_ui(upgrade) -> void:
+	# Set upgrade on penguin
 	pass
