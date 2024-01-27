@@ -7,11 +7,16 @@ var walking: bool = false
 var armour: bool = false
 var animation_state: String = "walking"
 
+var globals;
+var UPGRADES_ENUM;
+
 const SPEED = 100.0
 var upgrades = []
 
 
 func _ready() -> void:
+	globals = get_node("/root/GLOBALS")
+	UPGRADES_ENUM = globals.Upgrades
 	self.velocity.y = SPEED
 
 
@@ -45,12 +50,20 @@ func play_timed_animation(animation: String, time: float) -> void:
 
 func set_armour(value: bool) -> void:
 	armour = value
+	$Grandma.armour_active = value
 
 
 func _add_upgrade(upgrade):
 	# Add and track upgrade on penguin
-	# Need a way to track current state of upgrades (Grandma dead/alive)
 	upgrades.append(upgrade)
+	self._apply_upgrade(upgrade)
+
+func _apply_upgrade(upgrade):
+	if (upgrade == UPGRADES_ENUM.GRANDMA_ARMOUR):
+		$Grandma.is_purchased = true;
+		self.set_armour(true)
+	
+	
 
 
 

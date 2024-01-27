@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_004rj"]
 [ext_resource type="PackedScene" uid="uid://c8ib6wf4jexl7" path="res://scenes/upgrade_button.tscn" id="2_kbvb3"]
-[ext_resource type="Texture2D" uid="uid://hlt6p7sm5it0" path="res://assets/upgrades/grandma_armour.png" id="3_ncf2s"]
+[ext_resource type="Texture2D" uid="uid://c8e3fli4jpapf" path="res://assets/upgrades/grandma_armour.png" id="3_ncf2s"]
+
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_004rj")

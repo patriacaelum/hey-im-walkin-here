@@ -1,9 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://ctae8ynk80ucy"]
 
-[ext_resource type="Script" path="res://scenes/Player/Penguin.gd" id="1_18p7e"]
+
 [ext_resource type="Texture2D" uid="uid://u2dstmoqwg0y" path="res://assets/characters/Sprite_Penguin.png" id="2_6xhs7"]
 [ext_resource type="Texture2D" uid="uid://dapl4og13q562" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Walk.png" id="3_xy5k3"]
 [ext_resource type="Texture2D" uid="uid://b5257a86lfcoe" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Slip.png" id="4_ug8i7"]
+[ext_resource type="Script" path="res://scenes/Player/Penguin.gd" id="1_18p7e"]
+[ext_resource type="Texture2D" uid="uid://u2dstmoqwg0y" path="res://assets/characters/Sprite_Penguin.png" id="2_6xhs7"]
+[ext_resource type="PackedScene" uid="uid://byjn0k125nf7b" path="res://scenes/objects/Grandma.tscn" id="3_gs3d2"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7sv"]
 size = Vector2(45, 66)
@@ -287,5 +291,9 @@ hframes = 3
 vframes = 2
 
 [node name="AnimationChangeTimer" type="Timer" parent="."]
+
+[node name="Grandma" parent="." instance=ExtResource("3_gs3d2")]
+position = Vector2(25, 14)
+
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
