@@ -7,6 +7,7 @@ var CarScene: PackedScene = preload("res://scenes/car.tscn")
 func _ready() -> void:
 	$UI.started.connect(self._on_ui_started)
 	$CarSpawnTimer.timeout.connect(self._on_car_spawn_timer_timeout)
+	$UI.upgrade_purchased.connect(self._on_ui_upgrade_purchased)
 	# Spawn penguin
 	pass
 
@@ -27,6 +28,7 @@ func _on_crash_penguin(car) -> void:
 
 func _on_ui_upgrade_purchased(upgrade) -> void:
 	# Set upgrade on penguin
+	$Penguin._add_upgrade(upgrade)
 	pass
 
 
