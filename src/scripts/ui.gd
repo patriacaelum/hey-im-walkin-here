@@ -30,13 +30,18 @@ func spend_currency(amount: int) -> void:
 func update_upgrade_buttons() -> void:
 	for upgrade: Node in $GridContainer.get_children():
 		if upgrade is UpgradeButton:
-			if upgrade.price <= self.currency:
-				upgrade.disabled = false
-			else:
+			if upgrade.price > self.currency or upgrade.is_purchased:
 				upgrade.disabled = true
+			else:
+				upgrade.disabled = false
 
 
 func _on_purchased_upgrade_button(price: int) -> void:
 	self.spend_currency(price)
 	self.update_upgrade_buttons()
 	self.upgrade_purchased.emit()
+
+
+func _on_free_money_pressed() -> void:
+	self.add_currency(1)
+	self.update_upgrade_buttons()
