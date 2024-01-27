@@ -1,20 +1,27 @@
-extends Area2D
+class_name BananaPeel
+extends StaticBody2D
 
 var speedboost: int = 200
 var speedboost_time: float = 2.0
 
-signal bananapeel(time)
+const Y_MIN_BUFFER: int = 128
+
 
 func _ready():
 	$SpeedBoostTime.wait_time = speedboost_time
+	$Area2D.body_entered.connect(self._on_area_2d_body_entered)
+
+
+func _physics_process(delta: float) -> void:
+	if self.__out_of_bounds():
+		print("banana out of range")
+		self.queue_free()
+
 
 # Add speed boost to charracter for a set amount of time
-func _on_body_entered(body):
+func _on_area_2d_body_entered(body):
 	body.velocity.y += speedboost
 	$SpeedBoostTime.start()
-	
-	# Emit duration of speedboost to change character animation
-	bananapeel.emit(speedboost_time)
 	
 	await $SpeedBoostTime.timeout
 	body.velocity.y -= speedboost
@@ -24,6 +31,6 @@ func _on_body_entered(body):
 func upgrade():
 	pass
 
-	
-	queue_free()
-	pass # Replace with function body.
+
+func __out_of_bounds() -> bool:
+	return int(self.get_viewport_rect().position.y) > self.position.y - self.Y_MIN_BUFFER
