@@ -1,64 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1d3yhdsd7hp7"]
+[gd_scene load_steps=9 format=3 uid="uid://c1d3yhdsd7hp7"]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_yjr6w"]
 [ext_resource type="Texture2D" uid="uid://dgnv0krv6nn4n" path="res://assets/enemies/Car_Alive.png" id="2_jvorx"]
 [ext_resource type="Texture2D" uid="uid://vm5g6jchuxyl" path="res://assets/enemies/Car_Dead.png" id="3_k43pe"]
 [ext_resource type="Texture2D" uid="uid://dyccki24yxhgh" path="res://assets/particles/txt_alpha_soft.png" id="4_lsmnx"]
+[ext_resource type="Texture2D" uid="uid://dvj5fi6p87wig" path="res://assets/enemies/FancyCar_Alive.png" id="4_yo1kr"]
+[ext_resource type="Texture2D" uid="uid://bc5q2pqtevdoi" path="res://assets/enemies/FancyCar_Dead.png" id="5_14fvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sojae"]
 size = Vector2(56, 34)
-
-[sub_resource type="Animation" id="Animation_ny31p"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_jvorx")]
-}
-
-[sub_resource type="Animation" id="Animation_mmswm"]
-resource_name = "alive"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_jvorx")]
-}
-
-[sub_resource type="Animation" id="Animation_3eogt"]
-resource_name = "crash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_k43pe")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_17puj"]
-_data = {
-"RESET": SubResource("Animation_ny31p"),
-"alive": SubResource("Animation_mmswm"),
-"crash": SubResource("Animation_3eogt")
-}
 
 [sub_resource type="Curve" id="Curve_xh0dk"]
 _data = [Vector2(0, 0.416849), 0.0, 0.0, 0, 0, Vector2(0.764045, 0.992888), 0.0, 0.0, 0, 0]
@@ -73,13 +23,20 @@ script = ExtResource("1_yjr6w")
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_sojae")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CarAliveSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_jvorx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_17puj")
-}
+[node name="CarDeadSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_k43pe")
+
+[node name="FancyAliveSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_yo1kr")
+
+[node name="FancyDeadSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_14fvd")
 
 [node name="SmokeParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-19, 0)
