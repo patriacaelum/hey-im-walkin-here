@@ -12,7 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (is_purchased && armour_active):
-		$Sprite2D.visible = true
+		self.show()
 	else:
-		$Sprite2D.visible = false
+		self.hide()
 	pass

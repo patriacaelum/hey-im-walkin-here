@@ -19,7 +19,6 @@ func _ready() -> void:
 	UPGRADES_ENUM = globals.Upgrades
 	self.velocity.y = SPEED
 
-
 func _physics_process(delta: float) -> void:
 	if not self.walking:
 		return
@@ -52,6 +51,9 @@ func set_armour(value: bool) -> void:
 	armour = value
 	$Grandma.armour_active = value
 
+func _reset():
+	self.position = Vector2(636, 57)
+	self.set_armour($Grandma.is_purchased)
 
 func _add_upgrade(upgrade):
 	# Add and track upgrade on penguin
