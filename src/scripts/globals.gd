@@ -1,3 +1,3 @@
 extends Node
 
-enum Upgrades { GRANDMA_ARMOR }
+enum Upgrades { GRANDMA_ARMOUR }
