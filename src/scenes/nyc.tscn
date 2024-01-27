@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://f0i2dx0ig64o"]
+[gd_scene load_steps=5 format=3 uid="uid://f0i2dx0ig64o"]
 
 [ext_resource type="Script" path="res://scripts/nyc.gd" id="1_mmx8c"]
 [ext_resource type="PackedScene" uid="uid://3o5lehmuqdll" path="res://scenes/ui.tscn" id="2_tubqy"]
 [ext_resource type="PackedScene" uid="uid://ctae8ynk80ucy" path="res://scenes/Player/Penguin.tscn" id="4_infgd"]
+[ext_resource type="PackedScene" uid="uid://bhjpils1n2mpk" path="res://scenes/objects/banana_peel.tscn" id="4_xwdxk"]
 
 [node name="NYC" type="Node2D"]
 script = ExtResource("1_mmx8c")
@@ -24,3 +25,6 @@ drag_left_margin = 0.94
 drag_top_margin = 0.95
 drag_right_margin = 0.94
 drag_bottom_margin = 0.0
+
+[node name="Banana_Peel" parent="." instance=ExtResource("4_xwdxk")]
+position = Vector2(619, 139)
