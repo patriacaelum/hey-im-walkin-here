@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://byjn0k125nf7b"]
 
-[ext_resource type="Texture2D" uid="uid://c8e3fli4jpapf" path="res://assets/upgrades/grandma_armour.png" id="1_74yo6"]
+[ext_resource type="Texture2D" uid="uid://hlt6p7sm5it0" path="res://assets/upgrades/grandma_armour.png" id="1_74yo6"]
 [ext_resource type="Script" path="res://scenes/objects/Grandma.gd" id="1_l7hi8"]
 
 [node name="StaticBody2D" type="StaticBody2D"]

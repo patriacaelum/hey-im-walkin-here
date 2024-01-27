@@ -12,6 +12,7 @@ var UPGRADES_ENUM;
 const SPEED = 100.0
 var upgrades = []
 
+var bp_ratio = 1.0
 
 func _ready() -> void:
 	globals = get_node("/root/GLOBALS")
@@ -48,6 +49,7 @@ func _apply_upgrade(upgrade):
 	if (upgrade == UPGRADES_ENUM.GRANDMA_ARMOUR):
 		$Grandma.is_purchased = true;
 		self.set_armour(true)
-	
+	if (upgrade == UPGRADES_ENUM.MORE_BANANAS):
+		bp_ratio = 1.1;
 	
 

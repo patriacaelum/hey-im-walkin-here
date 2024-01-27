@@ -71,7 +71,7 @@ func _on_car_spawn_timer_timeout() -> void:
 
 
 func __spawn_banana_peels(y_min: int) -> void:
-	for i in range(self.banana_peels_per_block):
+	for i in range(self.banana_peels_per_block * $Penguin.bp_ratio):
 		var bp: BananaPeel = BananaPeelScene.instantiate()
 		bp.position = Vector2(
 			randi_range(0, int(self.get_viewport_rect().size.x)),

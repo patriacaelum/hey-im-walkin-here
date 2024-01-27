@@ -30,6 +30,7 @@ func _on_area_2d_body_entered(body):
 # Function should upgrade banana peel spawn rate or boost time duration
 func upgrade():
 	pass
+	
 
 
 func __out_of_bounds() -> bool:
