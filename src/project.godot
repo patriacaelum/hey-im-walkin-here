@@ -13,6 +13,7 @@ config_version=5
 config/name="Godot Template"
 config/description="Template for starting gamedev projects in Godot."
 config/version="0.0.1"
+run/main_scene="res://scenes/nyc.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
