@@ -1,13 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://f0i2dx0ig64o"]
+[gd_scene load_steps=5 format=3 uid="uid://f0i2dx0ig64o"]
 
 [ext_resource type="Script" path="res://scripts/nyc.gd" id="1_mmx8c"]
 [ext_resource type="PackedScene" uid="uid://bolhwn5uul3r" path="res://scenes/enemies/car.tscn" id="2_noxh2"]
-[ext_resource type="PackedScene" uid="uid://3o5lehmuqdll" path="res://scenes/ui.tscn" id="2_tubqy"]
+[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="2_tubqy"]
+[ext_resource type="PackedScene" uid="uid://ctae8ynk80ucy" path="res://scenes/Player/Penguin.tscn" id="4_infgd"]
 
 [node name="NYC" type="Node2D"]
 script = ExtResource("1_mmx8c")
 
 [node name="Car" parent="." instance=ExtResource("2_noxh2")]
 position = Vector2(-5, 221)
+
 [node name="UI" parent="." instance=ExtResource("2_tubqy")]
 currency = 2
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_infgd")]
+position = Vector2(636, 57)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(1, 2)
+limit_top = 0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.94
+drag_top_margin = 0.95
+drag_right_margin = 0.94
+drag_bottom_margin = 0.0
