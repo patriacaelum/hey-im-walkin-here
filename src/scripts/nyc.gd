@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _on_ui_started() -> void:
-	# Start penguin walking
+	$Penguin.walking = true
 	$CarSpawnTimer.start(2)
 
 
