@@ -6,6 +6,7 @@ signal penguin_collision(body)
 var walking: bool = false
 
 const SPEED = 100.0
+var upgrades = []
 
 
 func _ready() -> void:
@@ -27,3 +28,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body):
 	self.penguin_collision.emit(body);
+
+func _add_upgrade(upgrade):
+	# Add and track upgrade on penguin
+	# Need a way to track current state of upgrades (Grandma dead/alive)
+	upgrades.append(upgrade)
+	
