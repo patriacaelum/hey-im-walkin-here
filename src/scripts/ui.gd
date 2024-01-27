@@ -11,7 +11,7 @@ const CURRENCY_LABEL_PREFIX = "Bank: $"
 
 func _ready() -> void:
 	$Currency.text = self.CURRENCY_LABEL_PREFIX + String.num_int64(self.currency)
-
+	$FreeMoney.pressed.connect(self._on_free_money_pressed)
 	$StartButton.pressed.connect(self._on_start_button_pressed)
 
 	for upgrade: Node in $GridContainer.get_children():

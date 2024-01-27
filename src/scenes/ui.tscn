@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://3o5lehmuqdll"]
+[gd_scene load_steps=4 format=3 uid="uid://3o5lehmuqdll"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_004rj"]
 [ext_resource type="PackedScene" uid="uid://blunk2gp3od" path="res://scenes/upgrade_button.tscn" id="2_kbvb3"]
+[ext_resource type="Texture2D" uid="uid://baltc3bho7rao" path="res://assets/upgrades/grandma_armour.png" id="3_ncf2s"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_004rj")
@@ -21,37 +22,31 @@ columns = 3
 
 [node name="UpgradeButton0" parent="GridContainer" instance=ExtResource("2_kbvb3")]
 layout_mode = 2
-upgrade_name = "Upgrade0"
-
-[node name="UpgradeButton1" parent="GridContainer" instance=ExtResource("2_kbvb3")]
-layout_mode = 2
-upgrade_name = "Upgrade1"
-
-[node name="UpgradeButton2" parent="GridContainer" instance=ExtResource("2_kbvb3")]
-layout_mode = 2
-upgrade_name = "Upgrade2"
-
-[node name="UpgradeButton3" parent="GridContainer" instance=ExtResource("2_kbvb3")]
-layout_mode = 2
-upgrade_name = "Upgrade3"
-
-[node name="UpgradeButton4" parent="GridContainer" instance=ExtResource("2_kbvb3")]
-layout_mode = 2
-upgrade_name = "Upgrade4"
+text = ""
+icon = ExtResource("3_ncf2s")
 
 [node name="FreeMoney" type="Button" parent="."]
-offset_left = 1170.0
-offset_top = 9.0
-offset_right = 1269.0
-offset_bottom = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
+offset_top = 13.0
+offset_right = -16.0
+offset_bottom = 44.0
+grow_horizontal = 0
 text = "Free Money"
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 1012.0
-offset_top = 661.0
-offset_right = 1268.0
-offset_bottom = 703.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -281.0
+offset_top = -67.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Hey, I'm walkin' here!"
-
-[connection signal="pressed" from="FreeMoney" to="." method="_on_free_money_pressed"]
