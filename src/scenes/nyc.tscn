@@ -29,4 +29,3 @@ drag_bottom_margin = 0.0
 
 [connection signal="upgrade_purchased" from="UI" to="." method="_on_ui_upgrade_purchased"]
 [connection signal="penguin_collision" from="Penguin" to="." method="_on_crash_penguin"]
-[connection signal="boost" from="Banana_Peel" to="." method="_on_banana_peel_boost"]

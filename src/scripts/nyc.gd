@@ -72,6 +72,7 @@ func _on_banana_peel_boost(time):
 func __spawn_banana_peels(y_min: int) -> void:
 	for i in range(self.banana_peels_per_block):
 		var bp: BananaPeel = BananaPeelScene.instantiate()
+		bp.boost.connect(_on_banana_peel_boost)
 		bp.position = Vector2(
 			randi_range(0, int(self.get_viewport_rect().size.x)),
 			randi_range(y_min, y_min + int(self.get_viewport_rect().size.y)),
