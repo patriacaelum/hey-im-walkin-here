@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhjpils1n2mpk"]
+
+[ext_resource type="Script" path="res://scenes/objects/banana_peel.gd" id="1_8yjoy"]
+[ext_resource type="Texture2D" uid="uid://cxvwbkbiyfnqy" path="res://assets/objects/banana_peel.png" id="1_yqbud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdkgt"]
+radius = 9.0
+
+[node name="Banana_Peel" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_8yjoy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yqbud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hdkgt")
+
+[node name="SpeedBoostTime" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
