@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(_body):
 	self.broken = true
+	$AnimationPlayer.play("crash")
+	$SmokeParticles.emitting = true
 	self.crashed.emit()
 
 
