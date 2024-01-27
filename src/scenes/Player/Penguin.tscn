@@ -1,37 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctae8ynk80ucy"]
 
+[ext_resource type="Script" path="res://scenes/Player/Penguin.gd" id="1_18p7e"]
 [ext_resource type="Texture2D" uid="uid://u2dstmoqwg0y" path="res://assets/characters/Sprite_Penguin.png" id="2_6xhs7"]
-
-[sub_resource type="GDScript" id="GDScript_og1fh"]
-script/source = "extends CharacterBody2D
-
-
-const SPEED = 300.0
-
-
-func _physics_process(delta):
-	# Add the gravity.
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction_x = Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction_x:
-		velocity.x = direction_x * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	var direction_y = Input.get_axis(\"ui_up\", \"ui_down\")
-	if direction_y:
-		velocity.y = direction_y * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-
-	move_and_slide()
-
-
-func _on_area_2d_body_entered(body):
-	pass # Replace with function body.
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7sv"]
 size = Vector2(45, 66)
@@ -40,7 +10,7 @@ size = Vector2(45, 66)
 size = Vector2(46, 66)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = SubResource("GDScript_og1fh")
+script = ExtResource("1_18p7e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, 0)
