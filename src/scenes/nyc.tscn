@@ -7,3 +7,4 @@
 script = ExtResource("1_mmx8c")
 
 [node name="UI" parent="." instance=ExtResource("2_tubqy")]
+currency = 2
