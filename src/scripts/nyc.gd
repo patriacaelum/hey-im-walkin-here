@@ -2,12 +2,12 @@ extends Node2D
 
 
 func _ready() -> void:
+	$UI.started.connect(self._on_ui_started)
 	# Spawn penguin
-	# Show UI
 	pass
 
 
-func _on_start_ui() -> void:
+func _on_ui_started() -> void:
 	# Start penguin walking
 	# Start car spawning
 	pass
@@ -22,6 +22,6 @@ func _on_crash_penguin(car) -> void:
 	pass
 
 
-func _on_upgrade_purchased_ui(upgrade) -> void:
+func _on_ui_upgrade_purchased(upgrade) -> void:
 	# Set upgrade on penguin
 	pass
