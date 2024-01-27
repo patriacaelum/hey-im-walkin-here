@@ -8,8 +8,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sojae"]
 size = Vector2(56, 34)
 
-[sub_resource type="Animation" id="Animation_3eogt"]
-resource_name = "crash"
+[sub_resource type="Animation" id="Animation_ny31p"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_k43pe")]
+"values": [ExtResource("2_jvorx")]
 }
 
 [sub_resource type="Animation" id="Animation_mmswm"]
@@ -38,8 +38,8 @@ tracks/0/keys = {
 "values": [ExtResource("2_jvorx")]
 }
 
-[sub_resource type="Animation" id="Animation_ny31p"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_3eogt"]
+resource_name = "crash"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_jvorx")]
+"values": [ExtResource("3_k43pe")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_17puj"]

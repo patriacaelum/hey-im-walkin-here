@@ -5,6 +5,7 @@ signal penguin_collision(body)
 
 var walking: bool = false
 var armour: bool = false
+var animation_state: String = "walking"
 
 const SPEED = 100.0
 var upgrades = []
@@ -25,9 +26,22 @@ func _physics_process(delta: float) -> void:
 		self.velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	self.move_and_slide()
+	$AnimationPlayer.play(animation_state)
 
 func _on_area_2d_body_entered(body):
 	penguin_collision.emit(body);
+
+func play_timed_animation(animation: String, time: float) -> void:
+	print("playing animation")
+	$AnimationChangeTimer.wait_time = time
+	$AnimationChangeTimer.start()
+	
+	animation_state = animation
+	await $AnimationChangeTimer.timeout
+	animation_state = "walking"
+
+
+	
 
 func set_armour(value: bool) -> void:
 	armour = value
@@ -37,4 +51,7 @@ func _add_upgrade(upgrade):
 	# Add and track upgrade on penguin
 	# Need a way to track current state of upgrades (Grandma dead/alive)
 	upgrades.append(upgrade)
+
+
+
 

@@ -3,7 +3,7 @@ extends Area2D
 var speedboost: int = 200
 var speedboost_time: float = 2.0
 
-signal bananapeel(time)
+signal boost(time)
 
 func _ready():
 	$SpeedBoostTime.wait_time = speedboost_time
@@ -14,7 +14,7 @@ func _on_body_entered(body):
 	$SpeedBoostTime.start()
 	
 	# Emit duration of speedboost to change character animation
-	bananapeel.emit(speedboost_time)
+	boost.emit(speedboost_time)
 	
 	await $SpeedBoostTime.timeout
 	body.velocity.y -= speedboost
