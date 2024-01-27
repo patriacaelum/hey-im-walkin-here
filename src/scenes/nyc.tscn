@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://f0i2dx0ig64o"]
+[gd_scene load_steps=3 format=3 uid="uid://f0i2dx0ig64o"]
 
 [ext_resource type="Script" path="res://scripts/nyc.gd" id="1_mmx8c"]
+[ext_resource type="PackedScene" uid="uid://3o5lehmuqdll" path="res://scenes/ui.tscn" id="2_tubqy"]
 
 [node name="NYC" type="Node2D"]
 script = ExtResource("1_mmx8c")
+
+[node name="UI" parent="." instance=ExtResource("2_tubqy")]

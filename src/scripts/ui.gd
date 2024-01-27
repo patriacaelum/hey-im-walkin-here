@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 
 var currency: int = 0
@@ -30,5 +30,5 @@ func update_upgrade_states() -> void:
 				upgrade.disabled = false
 
 
-func _on_upgrade_pressed() -> void:
+func _on_pressed_upgrade() -> void:
 	pass
