@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(_body):
 	self.broken = true
+	$AnimationPlayer.play("crash")
 	self.crashed.emit()
 
 
