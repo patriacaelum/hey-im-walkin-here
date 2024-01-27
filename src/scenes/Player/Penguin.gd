@@ -36,7 +36,6 @@ func _on_area_2d_body_entered(body):
 	penguin_collision.emit(body);
 
 func play_timed_animation(animation: String, time: float) -> void:
-	print("playing animation")
 	$AnimationChangeTimer.wait_time = time
 	$AnimationChangeTimer.start()
 	
