@@ -4,7 +4,11 @@ extends StaticBody2D
 var speedboost: int = 200
 var speedboost_time: float = 2.0
 
+
+signal boost(time)
+
 const Y_MIN_BUFFER: int = 128
+
 
 
 func _ready():
@@ -22,6 +26,10 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_body_entered(body):
 	body.velocity.y += speedboost
 	$SpeedBoostTime.start()
+	
+
+	# Emit duration of speedboost to change character animation
+	boost.emit(speedboost_time)
 	
 	await $SpeedBoostTime.timeout
 	body.velocity.y -= speedboost

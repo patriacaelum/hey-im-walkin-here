@@ -6,13 +6,14 @@ extends StaticBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimationPlayer.play("walking")
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (is_purchased && armour_active):
-		$Sprite2D.visible = true
+		self.show()
 	else:
-		$Sprite2D.visible = false
+		self.hide()
 	pass
