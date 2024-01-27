@@ -1,10 +1,99 @@
-[gd_scene load_steps=3 format=3 uid="uid://byjn0k125nf7b"]
+[gd_scene load_steps=8 format=3 uid="uid://byjn0k125nf7b"]
 
-[ext_resource type="Texture2D" uid="uid://c8e3fli4jpapf" path="res://assets/upgrades/grandma_armour.png" id="1_74yo6"]
+[ext_resource type="Texture2D" uid="uid://hlt6p7sm5it0" path="res://assets/upgrades/grandma_armour.png" id="1_74yo6"]
 [ext_resource type="Script" path="res://scenes/objects/Grandma.gd" id="1_l7hi8"]
+[ext_resource type="Texture2D" uid="uid://r5fi2h224vhy" path="res://assets/spritesheets/Spritesheet-64x64-Grandma_walk.png" id="3_egdph"]
+
+[sub_resource type="Animation" id="Animation_yv5mw"]
+resource_name = "walking"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spritesheet_Walking:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_qofv7"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0mi7a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spritesheet_Walking:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_en0ts"]
+_data = {
+"RESET": SubResource("Animation_0mi7a"),
+"idle": SubResource("Animation_qofv7"),
+"walking": SubResource("Animation_yv5mw")
+}
 
 [node name="StaticBody2D" type="StaticBody2D"]
 script = ExtResource("1_l7hi8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Idle" type="Sprite2D" parent="."]
 texture = ExtResource("1_74yo6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_en0ts")
+}
+
+[node name="Spritesheet_Walking" type="Sprite2D" parent="."]
+texture = ExtResource("3_egdph")
+hframes = 3
+vframes = 2
