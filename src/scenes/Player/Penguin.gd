@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 
+signal penguin_collision(body)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -25,4 +26,5 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
+	penguin_collision.emit(body);
 	pass # Replace with function body.
