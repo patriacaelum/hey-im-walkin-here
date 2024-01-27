@@ -54,10 +54,6 @@ func _on_crash_penguin(body) -> void:
 			$CarSpawnTimer.stop()
 			$UI.show()
 	
-	# Stop the car
-	if 'crash' in body:
-		body.crash()
-
 
 func _on_ui_upgrade_purchased(upgrade) -> void:
 	# Set upgrade on penguin
@@ -81,11 +77,16 @@ func _on_car_spawn_timer_timeout() -> void:
 	$CarSpawnTimer.start(0.2)
 
 
+func _on_banana_peel_boost(time):
+	$Penguin.play_timed_animation("slipping", time)
+
 func __spawn_banana_peels(y_min: int) -> void:
 	for i in range(self.banana_peels_per_block):
 		var bp: BananaPeel = BananaPeelScene.instantiate()
+		bp.boost.connect(_on_banana_peel_boost)
 		bp.position = Vector2(
 			randi_range(0, int(self.get_viewport_rect().size.x)),
 			randi_range(y_min, y_min + int(self.get_viewport_rect().size.y)),
 		)
 		self.add_child(bp)
+
