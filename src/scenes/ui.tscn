@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://3o5lehmuqdll"]
+[gd_scene load_steps=3 format=3 uid="uid://3o5lehmuqdll"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_004rj"]
-[ext_resource type="Theme" uid="uid://b0v2x7nt8jqnd" path="res://assets/button_theme.tres" id="2_y5qmy"]
-[ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="2_ybdpb"]
+[ext_resource type="PackedScene" uid="uid://blunk2gp3od" path="res://scenes/upgrade_button.tscn" id="2_kbvb3"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_004rj")
@@ -14,39 +13,37 @@ theme_override_font_sizes/font_size = 48
 text = "Bank: $0"
 
 [node name="GridContainer" type="GridContainer" parent="."]
-offset_left = 138.0
-offset_top = 147.0
-offset_right = 1148.0
-offset_bottom = 303.0
-columns = 4
+offset_left = 27.0
+offset_top = 117.0
+offset_right = 1037.0
+offset_bottom = 273.0
+columns = 3
 
-[node name="Upgrade0" type="Button" parent="GridContainer"]
+[node name="UpgradeButton0" parent="GridContainer" instance=ExtResource("2_kbvb3")]
 layout_mode = 2
-theme = ExtResource("2_y5qmy")
-theme_override_font_sizes/font_size = 50
-text = "Upgrade 0"
-script = ExtResource("2_ybdpb")
+upgrade_name = "Upgrade0"
 
-[node name="Upgrade1" type="Button" parent="GridContainer"]
+[node name="UpgradeButton1" parent="GridContainer" instance=ExtResource("2_kbvb3")]
 layout_mode = 2
-theme = ExtResource("2_y5qmy")
-text = "Upgrade 1"
-script = ExtResource("2_ybdpb")
+upgrade_name = "Upgrade1"
 
-[node name="Upgrade2" type="Button" parent="GridContainer"]
+[node name="UpgradeButton2" parent="GridContainer" instance=ExtResource("2_kbvb3")]
 layout_mode = 2
-theme = ExtResource("2_y5qmy")
-text = "Upgrade 2"
-script = ExtResource("2_ybdpb")
+upgrade_name = "Upgrade2"
 
-[node name="Upgrade3" type="Button" parent="GridContainer"]
+[node name="UpgradeButton3" parent="GridContainer" instance=ExtResource("2_kbvb3")]
 layout_mode = 2
-theme = ExtResource("2_y5qmy")
-text = "Upgrade 3"
-script = ExtResource("2_ybdpb")
+upgrade_name = "Upgrade3"
 
-[node name="Upgrade4" type="Button" parent="GridContainer"]
+[node name="UpgradeButton4" parent="GridContainer" instance=ExtResource("2_kbvb3")]
 layout_mode = 2
-theme = ExtResource("2_y5qmy")
-text = "Upgrade 4"
-script = ExtResource("2_ybdpb")
+upgrade_name = "Upgrade4"
+
+[node name="FreeMoney" type="Button" parent="."]
+offset_left = 1161.0
+offset_top = 672.0
+offset_right = 1260.0
+offset_bottom = 703.0
+text = "Free Money"
+
+[connection signal="pressed" from="FreeMoney" to="." method="_on_free_money_pressed"]

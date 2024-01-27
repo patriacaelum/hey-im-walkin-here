@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://blunk2gp3od"]
+
+[ext_resource type="Theme" uid="uid://b0v2x7nt8jqnd" path="res://assets/button_theme.tres" id="1_ic4ku"]
+[ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="1_tgm6b"]
+
+[node name="UpgradeButton" type="Button"]
+theme = ExtResource("1_ic4ku")
+toggle_mode = true
+text = "Upgrade"
+script = ExtResource("1_tgm6b")
