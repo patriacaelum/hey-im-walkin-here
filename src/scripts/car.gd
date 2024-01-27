@@ -14,8 +14,8 @@ const POS_X_BUFFER: int = 256
 
 
 func _ready() -> void:
-#	$Area2D.body_entered.connect(self._on_body_entered)
-	pass 
+	$Area2D.body_entered.connect(self._on_area_2d_body_entered)
+
 
 func _process(delta: float) -> void:
 	self.position.x += self.speed * delta
@@ -23,8 +23,11 @@ func _process(delta: float) -> void:
 	if self.__out_of_bounds():
 		self.queue_free()
 
-func crash():
-	print('crashed')
+
+func _on_area_2d_body_entered(body: Node) -> void:
+	if body.get_instance_id() == self.get_instance_id():
+		return
+
 	speed = 0
 	broken = true
 	$AnimationPlayer.play("crash")

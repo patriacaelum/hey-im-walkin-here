@@ -43,10 +43,6 @@ func _on_crash_penguin(body) -> void:
 	# if penguin has no more armour:
 	#     end current launch and show UI
 	
-	# Stop the car
-	if 'crash' in body:
-		body.crash()
-
 
 func _on_ui_upgrade_purchased(upgrade) -> void:
 	# Set upgrade on penguin
