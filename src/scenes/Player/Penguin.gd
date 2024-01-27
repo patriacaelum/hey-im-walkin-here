@@ -1,30 +1,29 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-
 signal penguin_collision(body)
 
-func _physics_process(delta):
-	# Add the gravity.
+var walking: bool = false
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+const SPEED = 100.0
+
+
+func _ready() -> void:
+	self.velocity.y = SPEED
+
+
+func _physics_process(delta: float) -> void:
+	if not self.walking:
+		return
+
 	var direction_x = Input.get_axis("ui_left", "ui_right")
 	if direction_x:
-		velocity.x = direction_x * SPEED
+		self.velocity.x = direction_x * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		self.velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	var direction_y = Input.get_axis("ui_up", "ui_down")
-	if direction_y:
-		velocity.y = direction_y * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-
-	move_and_slide()
+	self.move_and_slide()
 
 
 func _on_area_2d_body_entered(body):
-	penguin_collision.emit(body);
-	pass # Replace with function body.
+	self.penguin_collision.emit(body);
