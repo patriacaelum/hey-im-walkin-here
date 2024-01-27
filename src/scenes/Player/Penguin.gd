@@ -4,8 +4,10 @@ extends CharacterBody2D
 signal penguin_collision(body)
 
 var walking: bool = false
+var armour: bool = false
 
 const SPEED = 100.0
+var upgrades = []
 
 
 func _ready() -> void:
@@ -24,6 +26,15 @@ func _physics_process(delta: float) -> void:
 	
 	self.move_and_slide()
 
-
 func _on_area_2d_body_entered(body):
-	self.penguin_collision.emit(body);
+	penguin_collision.emit(body);
+
+func set_armour(value: bool) -> void:
+	armour = value
+
+
+func _add_upgrade(upgrade):
+	# Add and track upgrade on penguin
+	# Need a way to track current state of upgrades (Grandma dead/alive)
+	upgrades.append(upgrade)
+

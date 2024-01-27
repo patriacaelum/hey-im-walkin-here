@@ -24,3 +24,8 @@ drag_left_margin = 0.94
 drag_top_margin = 0.95
 drag_right_margin = 0.94
 drag_bottom_margin = 0.0
+
+[node name="Cars" type="Node2D" parent="."]
+
+[connection signal="upgrade_purchased" from="UI" to="." method="_on_ui_upgrade_purchased"]
+[connection signal="penguin_collision" from="Penguin" to="." method="_on_crash_penguin"]

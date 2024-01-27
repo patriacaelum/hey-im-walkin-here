@@ -1,9 +1,7 @@
 class_name Car
-extends Area2D
-
+extends StaticBody2D
 
 signal crashed
-
 
 @export var speed: int = 0
 
@@ -16,8 +14,8 @@ const POS_X_BUFFER: int = 256
 
 
 func _ready() -> void:
-	self.body_entered.connect(self._on_body_entered)
-
+#	$Area2D.body_entered.connect(self._on_body_entered)
+	pass 
 
 func _process(delta: float) -> void:
 	self.position.x += self.speed * delta
@@ -25,10 +23,12 @@ func _process(delta: float) -> void:
 	if self.__out_of_bounds():
 		self.queue_free()
 
-
-func _on_body_entered(_body):
-	self.broken = true
-	self.crashed.emit()
+func crash():
+	print('crashed')
+	speed = 0
+	broken = true
+	$AnimationPlayer.play("crash")
+	$SmokeParticles.emitting = true
 
 
 func __out_of_bounds() -> bool:
