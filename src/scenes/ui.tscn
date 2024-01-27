@@ -1,11 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://3o5lehmuqdll"]
+[gd_scene load_steps=3 format=3 uid="uid://3o5lehmuqdll"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_004rj"]
+[ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="2_ybdpb"]
 
-[node name="UI" type="Node2D"]
+[node name="UI" type="CanvasLayer"]
 script = ExtResource("1_004rj")
 
 [node name="Currency" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Bank: $0"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 24.0
+offset_top = 42.0
+offset_right = 388.0
+offset_bottom = 108.0
+columns = 4
+
+[node name="Upgrade0" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Upgrade 0"
+script = ExtResource("2_ybdpb")
+
+[node name="Upgrade1" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Upgrade 1"
+script = ExtResource("2_ybdpb")
+
+[node name="Upgrade2" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Upgrade 2"
+script = ExtResource("2_ybdpb")
+
+[node name="Upgrade3" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Upgrade 3"
+script = ExtResource("2_ybdpb")
+
+[node name="Upgrade4" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Upgrade 4"
+script = ExtResource("2_ybdpb")
