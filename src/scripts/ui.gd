@@ -1,17 +1,21 @@
 extends CanvasLayer
 
 
-var currency: int = 0
+signal upgrade_purchased(upgrade)
+
+@export var currency: int = 0
 
 const CURRENCY_LABEL_PREFIX = "Bank: $"
 
 
 func _ready() -> void:
-	for upgrade: Node in $GridContainer.get_children():
-		if upgrade is Button:
-			upgrade.pressed.connect(self._on_pressed_upgrade)
-			upgrade.disabled = true
+	$Currency.text = self.CURRENCY_LABEL_PREFIX + String.num_int64(self.currency)
 
+	for upgrade: Node in $GridContainer.get_children():
+		if upgrade is UpgradeButton:
+			upgrade.purchased.connect(self._on_purchased_upgrade_button)
+
+	self.update_upgrade_buttons()
 
 func add_currency(amount: int) -> void:
 	self.currency += amount
@@ -23,12 +27,16 @@ func spend_currency(amount: int) -> void:
 	$Currency.text = self.CURRENCY_LABEL_PREFIX + String.num_int64(self.currency)
 
 
-func update_upgrade_states() -> void:
+func update_upgrade_buttons() -> void:
 	for upgrade: Node in $GridContainer.get_children():
-		if upgrade is Button:
+		if upgrade is UpgradeButton:
 			if upgrade.price <= self.currency:
 				upgrade.disabled = false
+			else:
+				upgrade.disabled = true
 
 
-func _on_pressed_upgrade() -> void:
-	pass
+func _on_purchased_upgrade_button(price: int) -> void:
+	self.spend_currency(price)
+	self.update_upgrade_buttons()
+	self.upgrade_purchased.emit()
