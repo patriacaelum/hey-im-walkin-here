@@ -91,12 +91,12 @@ func _reset():
 	self.animation_state = "walking"
 	self.alive = true
 	self.restore_armour()
-	$Grandma.randomizeColour()
 	$GrandmaHolder.rotation = 0
 	if $GrandmaHolder/Grandma.is_purchased:
 		# If armour is +=1 after a reset you'll die in one hit
 		armour = 1
 		$GrandmaHolder/Grandma.armour_active = true
+		$GrandmaHolder/Grandma.randomizeColour()
 
 
 func _add_upgrade(upgrade):
