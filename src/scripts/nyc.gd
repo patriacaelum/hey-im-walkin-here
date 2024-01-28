@@ -60,7 +60,7 @@ func _on_ui_started() -> void:
 				child.queue_free()
 		rest_y = 0
 		rest_multiplier = 1.1
-		self.car_spawn_multipler = 1.0
+		self.car_spawn_multiplier = 1.0
 		self._spawn_next_rest()
 	
 	# Begin
@@ -93,8 +93,11 @@ func _on_crash_penguin(body) -> void:
 	
 
 func _on_ui_upgrade_purchased(upgrade) -> void:
-	# Set upgrade on penguin
-	$Penguin._add_upgrade(upgrade)
+	if upgrade == GLOBALS.Upgrades.MORE_LUXURY:
+		self.fancy_car_spawn_rate *= 2
+	else:
+		# Set upgrade on penguin
+		$Penguin._add_upgrade(upgrade)
 
 
 func _on_car_spawn_timer_timeout() -> void:
