@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://3o5lehmuqdll"]
+[gd_scene load_steps=10 format=3 uid="uid://3o5lehmuqdll"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_004rj"]
 [ext_resource type="PackedScene" uid="uid://c8ib6wf4jexl7" path="res://scenes/upgrade_button.tscn" id="2_kbvb3"]
+[ext_resource type="FontFile" uid="uid://bvhtlebv8chx3" path="res://assets/minimal5x7/minimal5x7.ttf" id="2_w2n37"]
 [ext_resource type="Texture2D" uid="uid://hlt6p7sm5it0" path="res://assets/upgrades/grandma_armour.png" id="3_ncf2s"]
 [ext_resource type="Theme" uid="uid://b0v2x7nt8jqnd" path="res://assets/button_theme.tres" id="4_ddwsg"]
 [ext_resource type="Texture2D" uid="uid://cxvwbkbiyfnqy" path="res://assets/objects/banana_peel.png" id="4_moi42"]
@@ -13,9 +14,12 @@
 script = ExtResource("1_004rj")
 
 [node name="Currency" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 48
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 190.0
+offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("2_w2n37")
+theme_override_font_sizes/font_size = 72
 text = "Bank: $0"
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -27,29 +31,41 @@ columns = 3
 
 [node name="UpgradeButton0" parent="GridContainer" instance=ExtResource("2_kbvb3")]
 layout_mode = 2
+tooltip_text = "Help Grandma cross the street.
+Protects against one collision."
 text = ""
 icon = ExtResource("3_ncf2s")
+price = 5
 
 [node name="UpgradeButton1" type="Button" parent="GridContainer"]
 layout_mode = 2
+tooltip_text = "Increases the number of bananas that spawn.
+Makes you more slippery."
+theme = ExtResource("4_ddwsg")
 icon = ExtResource("4_moi42")
 script = ExtResource("5_h4wu0")
-price = 5
+price = 15
 upgrade_num = 1
+
+[node name="UpgradeButton3" type="Button" parent="GridContainer"]
+layout_mode = 2
+tooltip_text = "Increases the number of luxury cars that spawn.
+Their insurance policies are worth more."
+theme = ExtResource("4_ddwsg")
+icon = ExtResource("7_uuo1p")
+script = ExtResource("5_h4wu0")
+price = 20
+upgrade_num = 3
 
 [node name="UpgradeButton2" type="Button" parent="GridContainer"]
 layout_mode = 2
+tooltip_text = "Unlocks the Thor Zone. Use \"x\" to affect cars in the zone. Has a cooldown.
+Thor loves penguins."
+theme = ExtResource("4_ddwsg")
 icon = ExtResource("6_a4sft")
 script = ExtResource("5_h4wu0")
 price = 25
 upgrade_num = 2
-
-[node name="UpgradeButton3" type="Button" parent="GridContainer"]
-layout_mode = 2
-icon = ExtResource("7_uuo1p")
-script = ExtResource("5_h4wu0")
-price = 14
-upgrade_num = 3
 
 [node name="FreeMoney" type="Button" parent="."]
 visible = false
@@ -75,8 +91,9 @@ offset_right = -25.0
 offset_bottom = -25.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Hey, I'm walkin' here!"
+theme_override_fonts/font = ExtResource("2_w2n37")
+theme_override_font_sizes/font_size = 48
+text = "Hey, I'm waddlin' here!"
 
 [node name="Highscore" type="Label" parent="."]
 anchors_preset = 1
