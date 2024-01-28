@@ -1,5 +1,9 @@
-[gd_resource type="Theme" format=3 uid="uid://b0v2x7nt8jqnd"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b0v2x7nt8jqnd"]
+
+[ext_resource type="FontFile" uid="uid://bvhtlebv8chx3" path="res://assets/minimal5x7/minimal5x7.ttf" id="1_gfpec"]
 
 [resource]
 Button/font_sizes/font_size = 48
-Label/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_gfpec")
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("1_gfpec")
