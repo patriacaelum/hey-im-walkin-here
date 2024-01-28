@@ -34,6 +34,8 @@ func _process(delta: float) -> void:
 	if self.__out_of_bounds():
 		self.queue_free()
 
+# Play lightning animation in random order of frames
+
 
 func set_sprite(type: CAR_TYPE) -> void:
 	self.__car_type = type
@@ -88,3 +90,7 @@ func __out_of_bounds() -> bool:
 
 func _on_area_2d_area_entered(area):
 	self._disable_car()
+	
+	
+func lightning_struck():
+	$AnimationPlayer.play("lightning")
