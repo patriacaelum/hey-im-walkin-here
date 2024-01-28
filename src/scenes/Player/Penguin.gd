@@ -5,7 +5,7 @@ extends CharacterBody2D
 signal penguin_collision(body)
 signal currency_collected(amount: int)
 
-
+@export var thorsound: int = -25
 var walking: bool = false
 var alive: bool = true
 var armour: int = 0
