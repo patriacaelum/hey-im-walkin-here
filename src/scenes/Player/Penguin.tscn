@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctae8ynk80ucy"]
+[gd_scene load_steps=21 format=3 uid="uid://ctae8ynk80ucy"]
 
 [ext_resource type="Script" path="res://scenes/Player/Penguin.gd" id="1_18p7e"]
 [ext_resource type="Texture2D" uid="uid://u2dstmoqwg0y" path="res://assets/characters/Sprite_Penguin.png" id="2_6xhs7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dhsyk02fc8y0f" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Roll.png" id="5_vi6e1"]
 [ext_resource type="Script" path="res://scenes/Player/Money.gd" id="6_j6y58"]
 [ext_resource type="Texture2D" uid="uid://fak538y1g4q" path="res://assets/objects/money.png" id="7_chhn1"]
+[ext_resource type="AudioStream" uid="uid://donhg1njvhj12" path="res://assets/Sounds/explosion_1.wav" id="10_ib0l3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tffjj"]
 radius = 180.011
@@ -562,5 +563,8 @@ one_shot = true
 [node name="ThorZoneTimer" type="Timer" parent="."]
 wait_time = 7.0
 one_shot = true
+
+[node name="THORZONESFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ib0l3")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

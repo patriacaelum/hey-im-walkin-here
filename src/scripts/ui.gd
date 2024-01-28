@@ -97,4 +97,5 @@ func _on_free_money_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	self.set_mode(MODE.PENGUIN)
+	$StartButton/AudioStreamPlayer.play()
 	started.emit()

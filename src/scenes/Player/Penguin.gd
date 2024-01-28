@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 		$RollingTimer.start()
 	elif event.is_action_pressed("thor_zone") and $ThorZoneSprite.visible:
 		var used: bool = false
-
+		$THORZONESFX.play()
 		for body: Node2D in $ThorZone.get_overlapping_bodies():
 			if body is Car:
 				body._disable_car()

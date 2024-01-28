@@ -131,6 +131,8 @@ func _on_car_spawn_timer_timeout() -> void:
 
 func _on_banana_peel_boost(time):
 	$Penguin.play_timed_animation("slipping", time)
+	$BananapeelSlipSFXplayer.play()
+	
 
 func __spawn_banana_peels(y_min: int) -> void:
 	for i in range(self.banana_peels_per_block * $Penguin.bp_ratio):

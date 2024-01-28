@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://3o5lehmuqdll"]
+[gd_scene load_steps=11 format=3 uid="uid://3o5lehmuqdll"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_004rj"]
 [ext_resource type="PackedScene" uid="uid://c8ib6wf4jexl7" path="res://scenes/upgrade_button.tscn" id="2_kbvb3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="5_h4wu0"]
 [ext_resource type="Texture2D" uid="uid://c3q5pup8jyrrq" path="res://assets/upgrades/thorzone_icon.png" id="6_a4sft"]
 [ext_resource type="Texture2D" uid="uid://dvj5fi6p87wig" path="res://assets/enemies/FancyCar_Alive.png" id="7_uuo1p"]
+[ext_resource type="AudioStream" uid="uid://ce608ga0sic64" path="res://assets/Sounds/im-walkin-here-mp3cut_fRIaKrM.mp3" id="10_td0k0"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_004rj")
@@ -94,6 +95,10 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_w2n37")
 theme_override_font_sizes/font_size = 48
 text = "Hey, I'm waddlin' here!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StartButton"]
+stream = ExtResource("10_td0k0")
+volume_db = -20.0
 
 [node name="Highscore" type="Label" parent="."]
 anchors_preset = 1
