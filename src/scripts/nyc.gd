@@ -13,6 +13,8 @@ const initial_rest_y: int = 3000
 var rest_multiplier: float = 1.1
 var rest_y: int = 0
 
+const BOOST_SPEED: int = 250
+
 
 func _ready() -> void:
 	$UI.started.connect(self._on_ui_started)
@@ -60,6 +62,24 @@ func _on_ui_started() -> void:
 	# Begin
 	$Penguin.walking = true
 	$CarSpawnTimer.start(2)
+	$Penguin/Arrow.hide()
+	self._starting_boost()
+	
+func _starting_boost():
+	# Boost in X direction disabled
+	var rotation = $Penguin/Arrow.rotation
+	var direction_x = -sin(rotation)
+	var direction_y = cos(rotation)
+	#$Penguin.velocity.x += direction_x * BOOST_SPEED
+	$Penguin.velocity.y += direction_y * BOOST_SPEED
+	
+	$Penguin/Arrow/Timer.start()
+	await $Penguin/Arrow/Timer.timeout
+	
+	#$Penguin.velocity.x -= direction_x * BOOST_SPEED
+	$Penguin.velocity.y -= direction_y * BOOST_SPEED
+
+	pass
 
 
 func _on_crash_penguin(body) -> void:
@@ -120,6 +140,7 @@ func _on_resting():
 	$UI.set_mode(UI.MODE.UPGRADE)
 	self._spawn_next_rest()
 	$Penguin._resting_pause()
+	$Penguin/Arrow.show()
 
 
 func _spawn_next_rest() -> void:
