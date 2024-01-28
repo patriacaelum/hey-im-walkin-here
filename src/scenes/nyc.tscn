@@ -18,6 +18,7 @@ position = Vector2(-128, 0)
 currency = 2
 
 [node name="Penguin" parent="." instance=ExtResource("4_infgd")]
+z_index = 1
 position = Vector2(636, 57)
 
 [node name="Camera2D" type="Camera2D" parent="Penguin"]

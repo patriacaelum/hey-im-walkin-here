@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1d3yhdsd7hp7"]
+[gd_scene load_steps=10 format=3 uid="uid://c1d3yhdsd7hp7"]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_yjr6w"]
 [ext_resource type="Texture2D" uid="uid://dgnv0krv6nn4n" path="res://assets/enemies/Car_Alive.png" id="2_jvorx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dyccki24yxhgh" path="res://assets/particles/txt_alpha_soft.png" id="4_lsmnx"]
 [ext_resource type="Texture2D" uid="uid://dvj5fi6p87wig" path="res://assets/enemies/FancyCar_Alive.png" id="4_yo1kr"]
 [ext_resource type="Texture2D" uid="uid://bc5q2pqtevdoi" path="res://assets/enemies/FancyCar_Dead.png" id="5_14fvd"]
+[ext_resource type="Texture2D" uid="uid://hvsgrs1kuryl" path="res://assets/particles/FX-MONEY.png" id="7_ch5q6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sojae"]
 size = Vector2(56, 34)
@@ -59,5 +60,16 @@ collision_mask = 11
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_sojae")
+
+[node name="MoneyParticles" type="CPUParticles2D" parent="."]
+randomness = 0.5
+lifetime_randomness = 0.14
+texture = ExtResource("7_ch5q6")
+gravity = Vector2(0, -100)
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+color = Color(0.427451, 0.776471, 0.470588, 1)
+hue_variation_min = -0.79
+hue_variation_max = 1.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
