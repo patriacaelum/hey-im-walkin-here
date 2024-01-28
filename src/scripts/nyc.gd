@@ -81,7 +81,7 @@ func _starting_boost():
 	await $Penguin/Arrow/Timer.timeout
 	
 	#$Penguin.velocity.x -= direction_x * BOOST_SPEED
-	$Penguin.velocity.y -= direction_y * BOOST_SPEED
+	$Penguin.velocity.y = max($Penguin.velocity.y - $Penguin.velocity.y * BOOST_SPEED, $Penguin.SPEED)
 
 	pass
 
