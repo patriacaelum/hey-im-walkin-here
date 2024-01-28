@@ -1,5 +1,5 @@
 class_name Car
-extends StaticBody2D
+extends CharacterBody2D
 
 signal crashed
 

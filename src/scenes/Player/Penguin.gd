@@ -25,6 +25,7 @@ func _ready() -> void:
 	self.velocity.y = SPEED
 	$IFrameTimer.timeout.connect(self._on_iframe_timer_timeout)
 	$RollingTimer.timeout.connect(self._on_rolling_timer_timeout)
+	$ThorZoneTimer.timeout.connect(self._on_thor_zone_timer_timeout)
 
 
 func _input(event: InputEvent) -> void:
@@ -37,6 +38,17 @@ func _input(event: InputEvent) -> void:
 		self.is_rolling = true
 		self.animation_state = "roll"
 		$RollingTimer.start()
+	elif event.is_action_pressed("thor_zone") and $ThorZoneSprite.visible:
+		var used: bool = false
+
+		for body: Node2D in $ThorZone.get_overlapping_bodies():
+			if body is Car:
+				body._disable_car()
+				used = true
+
+		if used:
+			$ThorZoneSprite.hide()
+			$ThorZoneTimer.start()
 
 
 func _physics_process(delta: float) -> void:
@@ -138,9 +150,10 @@ func _apply_upgrade(upgrade):
 	if upgrade == GLOBALS.Upgrades.GRANDMA_ARMOUR:
 		$GrandmaHolder/Grandma.is_purchased = true
 		self.armour += 1
-
-	if upgrade == GLOBALS.Upgrades.MORE_BANANAS:
+	elif upgrade == GLOBALS.Upgrades.MORE_BANANAS:
 		self.bp_ratio += 0.25
+	elif upgrade == GLOBALS.Upgrades.THOR_ZONE:
+		$ThorZoneSprite.show()
 
 
 func _on_iframe_timer_timeout() -> void:
@@ -151,3 +164,7 @@ func _on_rolling_timer_timeout() -> void:
 	self.velocity.y = self.SPEED
 	self.is_rolling = false
 	self.animation_state = "walking"
+
+
+func _on_thor_zone_timer_timeout() -> void:
+	$ThorZoneSprite.show()
