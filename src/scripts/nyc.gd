@@ -65,7 +65,7 @@ func _on_ui_started() -> void:
 func _on_crash_penguin(body) -> void:
 	$CarSpawnTimer.stop()
 	$UI.update_highscore()
-	$UI.set_mode(UI.MODE.UPGRADE)
+	$UI.set_mode($UI.MODE.UPGRADE)
 	
 
 func _on_ui_upgrade_purchased(upgrade) -> void:

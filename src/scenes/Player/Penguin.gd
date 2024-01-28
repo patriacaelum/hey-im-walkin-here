@@ -80,6 +80,7 @@ func _reset():
 	self.animation_state = "walking"
 	self.alive = true
 	self.restore_armour()
+	$Grandma.randomizeColour()
 
 func _add_upgrade(upgrade):
 	# Add and track upgrade on penguin
