@@ -45,6 +45,7 @@ func _input(event: InputEvent) -> void:
 		for body: Node2D in $ThorZone.get_overlapping_bodies():
 			if body is Car:
 				body._disable_car()
+				body.lightning_struck()
 				used = true
 
 		if used:
