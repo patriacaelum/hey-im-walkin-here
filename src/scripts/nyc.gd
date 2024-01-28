@@ -96,7 +96,7 @@ func _on_banana_peel_boost(time):
 	$Penguin.play_timed_animation("slipping", time)
 
 func __spawn_banana_peels(y_min: int) -> void:
-	for i in range(self.banana_peels_per_block):
+	for i in range(self.banana_peels_per_block * $Penguin.bp_ratio):
 		var bp: BananaPeel = BananaPeelScene.instantiate()
 		bp.boost.connect(_on_banana_peel_boost)
 		bp.position = Vector2(
