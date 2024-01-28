@@ -24,15 +24,19 @@ func _physics_process(delta: float) -> void:
 
 # Add speed boost to charracter for a set amount of time
 func _on_area_2d_body_entered(body):
+	if body.is_rolling:
+		return
+		
 	body.velocity.y += speedboost
+	body.is_sliding = true
 	$SpeedBoostTime.start()
-	
 
 	# Emit duration of speedboost to change character animation
 	boost.emit(speedboost_time)
 	
 	await $SpeedBoostTime.timeout
-	body.velocity.y -= speedboost
+	body.velocity.y = max(body.velocity.y - speedboost, body.SPEED)
+	body.is_sliding = false
 	
 
 # Function should upgrade banana peel spawn rate or boost time duration
