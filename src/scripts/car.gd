@@ -44,11 +44,13 @@ func set_sprite(type: CAR_TYPE) -> void:
 			$CarDeadSprite.hide()
 			$FancyAliveSprite.hide()
 			$FancyDeadSprite.hide()
+			$MoneyParticles.hide()
 		CAR_TYPE.FANCY:
 			$CarAliveSprite.hide()
 			$CarDeadSprite.hide()
 			$FancyAliveSprite.show()
 			$FancyDeadSprite.hide()
+			$MoneyParticles.show()
 			self.price *= 2
 
 	if self.speed > 0:

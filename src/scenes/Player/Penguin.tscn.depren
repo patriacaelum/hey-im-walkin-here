@@ -2,22 +2,17 @@
 
 [ext_resource type="Script" path="res://scenes/Player/Penguin.gd" id="1_18p7e"]
 [ext_resource type="Texture2D" uid="uid://u2dstmoqwg0y" path="res://assets/characters/Sprite_Penguin.png" id="2_6xhs7"]
-[ext_resource type="Texture2D" uid="uid://1uwd6sf6j3od" path="res://assets/upgrades/thorzone.png" id="2_lijn7"]
 [ext_resource type="PackedScene" uid="uid://byjn0k125nf7b" path="res://scenes/objects/Grandma.tscn" id="3_gs3d2"]
 [ext_resource type="Texture2D" uid="uid://dapl4og13q562" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Walk.png" id="3_xy5k3"]
 [ext_resource type="Texture2D" uid="uid://b5257a86lfcoe" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Slip.png" id="4_ug8i7"]
-[ext_resource type="Script" path="res://scenes/Player/Money.gd" id="6_j6y58"]
+[ext_resource type="Script" path="res://scenes/Money.gd" id="6_j6y58"]
 [ext_resource type="Texture2D" uid="uid://fak538y1g4q" path="res://assets/objects/money.png" id="7_chhn1"]
-[ext_resource type="Texture2D" uid="uid://dhsyk02fc8y0f" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Roll.png" id="5_vi6e1"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tffjj"]
-radius = 180.011
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7sv"]
-size = Vector2(36, 46)
+size = Vector2(45, 66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48fc7"]
-size = Vector2(35, 45)
+size = Vector2(46, 66)
 
 [sub_resource type="Animation" id="Animation_n3rve"]
 length = 0.001
@@ -93,54 +88,6 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Spritesheet_Roll:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Spritesheet_Roll:frame")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("CollisionShape2D:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 5.5)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Area2D/CollisionShape2D:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-13, -9)]
-}
 
 [sub_resource type="Animation" id="Animation_quk3n"]
 resource_name = "idle"
@@ -193,94 +140,6 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_swrgy"]
-resource_name = "roll"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BaseSprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Spritesheet_Walking:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Spritesheet_Slipping:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Spritesheet_Roll:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Spritesheet_Roll:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CollisionShape2D:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 5.25), Vector2(0, 9.375), Vector2(0, 7.5), Vector2(0, 10), Vector2(0, 9.5)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Area2D/CollisionShape2D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-13, -2), Vector2(-13, 0), Vector2(-13, -1.25), Vector2(-13, 1.83333), Vector2(-13, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_1f7k6"]
 resource_name = "slipping"
 length = 0.5
@@ -328,42 +187,6 @@ tracks/3/path = NodePath("Spritesheet_Walking:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-4, 2.875)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Area2D/CollisionShape2D:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-18.25, -9.5)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Spritesheet_Roll:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -422,76 +245,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Spritesheet_Roll:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CollisionShape2D:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 2)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Area2D/CollisionShape2D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-11.5, -7)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5m0fq"]
 _data = {
 "RESET": SubResource("Animation_n3rve"),
 "idle": SubResource("Animation_quk3n"),
-"roll": SubResource("Animation_swrgy"),
 "slipping": SubResource("Animation_1f7k6"),
 "walking": SubResource("Animation_xitc7")
 }
 
+[sub_resource type="GDScript" id="GDScript_b4sls"]
+script/source = "extends Path2D
+
+var inc=0
+var speed=500
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	inc+=delta*speed
+	$PathFollow2D.offset=inc
+"
+
 [sub_resource type="Curve2D" id="Curve2D_5leto"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -100)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -50)
 }
 point_count = 2
-script = null
+script = SubResource("GDScript_b4sls")
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_18p7e")
 
-[node name="ThorZoneSprite" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
-texture = ExtResource("2_lijn7")
-
-[node name="ThorZone" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ThorZone"]
-shape = SubResource("CircleShape2D_tffjj")
+[node name="BaseSprite" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, 0)
+texture = ExtResource("2_6xhs7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_tc7sv")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -508,10 +297,6 @@ libraries = {
 }
 autoplay = "walking"
 
-[node name="BaseSprite" type="Sprite2D" parent="."]
-position = Vector2(-3.8147e-06, 0)
-texture = ExtResource("2_6xhs7")
-
 [node name="Spritesheet_Walking" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
 texture = ExtResource("3_xy5k3")
@@ -521,12 +306,6 @@ vframes = 2
 [node name="Spritesheet_Slipping" type="Sprite2D" parent="."]
 texture = ExtResource("4_ug8i7")
 hframes = 3
-vframes = 2
-
-[node name="Spritesheet_Roll" type="Sprite2D" parent="."]
-position = Vector2(-3.8147e-06, 0)
-texture = ExtResource("5_vi6e1")
-hframes = 2
 vframes = 2
 
 [node name="AnimationChangeTimer" type="Timer" parent="."]
@@ -540,26 +319,18 @@ position = Vector2(25, 14)
 one_shot = true
 
 [node name="Money" type="Node2D" parent="."]
-visible = false
-position = Vector2(0, -40)
 script = ExtResource("6_j6y58")
 
 [node name="Path2D" type="Path2D" parent="Money"]
+position = Vector2(0, -40)
 curve = SubResource("Curve2D_5leto")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Money/Path2D"]
 rotation = -1.5708
-loop = false
 
 [node name="Money" type="Sprite2D" parent="Money/Path2D/PathFollow2D"]
-rotation = 1.5708
+z_index = -1
+position = Vector2(0, -40)
 texture = ExtResource("7_chhn1")
-[node name="RollingTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="ThorZoneTimer" type="Timer" parent="."]
-wait_time = 7.0
-one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
