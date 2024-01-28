@@ -128,7 +128,7 @@ func _spawn_next_rest() -> void:
 		rest_y = initial_rest_y
 	else :
 		rest_y += (initial_rest_y * rest_multiplier)
-	rest_multiplier *= rest_multiplier
+	rest_multiplier += 0.1
 	rs.position = Vector2(642, rest_y)
 	self.add_child(rs)
 	
