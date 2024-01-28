@@ -31,7 +31,6 @@ drag_right_margin = 0.94
 drag_bottom_margin = 0.0
 
 [node name="Arrow" parent="Penguin" instance=ExtResource("5_t1228")]
-visible = false
 position = Vector2(0, 47)
 
 [node name="Cars" type="Node2D" parent="."]
