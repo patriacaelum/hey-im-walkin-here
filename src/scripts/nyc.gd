@@ -75,13 +75,15 @@ func _starting_boost():
 	var rotation = $Penguin/Arrow.rotation
 	var direction_x = -sin(rotation)
 	var direction_y = cos(rotation)
-	#$Penguin.velocity.x += direction_x * BOOST_SPEED
+	$Penguin.is_boosted = true;
+	$Penguin.velocity.x += direction_x * BOOST_SPEED
 	$Penguin.velocity.y += direction_y * BOOST_SPEED
 	
 	$Penguin/Arrow/Timer.start()
 	await $Penguin/Arrow/Timer.timeout
 	
-	#$Penguin.velocity.x -= direction_x * BOOST_SPEED
+	$Penguin.is_boosted = false;
+	$Penguin.velocity.x -= direction_x * BOOST_SPEED
 	$Penguin.velocity.y = max($Penguin.velocity.y - $Penguin.velocity.y * BOOST_SPEED, $Penguin.SPEED)
 
 	pass
