@@ -8,7 +8,6 @@ signal currency_collected(amount: int)
 
 var walking: bool = false
 var armour: int = 0
-var bp_ratio: float = 1.0
 var animation_state: String = "walking"
 var upgrades: Array = []
 
@@ -40,7 +39,7 @@ func _on_area_2d_body_entered(body):
 	self.remove_armour()
 	self.currency_collected.emit(body.price)
 
-	if self.armour <= 0:
+	if self.armour < 0:
 		self.walking = false
 		penguin_collision.emit(body)
 
@@ -61,8 +60,12 @@ func remove_armour() -> void:
 
 func _reset():
 	self.position = Vector2(636, 57)
+	self.velocity.y = SPEED
+	self.animation_state = "walking"
 	if $Grandma.is_purchased:
-		self.armour += 1
+		# If armour is +=1 after a reset you'll die in one hit
+		armour = 1
+		$Grandma.armour_active = true
 
 
 func _add_upgrade(upgrade):
@@ -74,6 +77,4 @@ func _add_upgrade(upgrade):
 func _apply_upgrade(upgrade):
 	if upgrade == GLOBALS.Upgrades.GRANDMA_ARMOUR:
 		$Grandma.is_purchased = true
-		self.armour += 1
-	if upgrade == GLOBALS.Upgrades.MORE_BANANAS:
-		self.bp_ratio += 0.1
+	
