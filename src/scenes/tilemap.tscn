@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7gdetqk2nvdf"]
+
+[ext_resource type="Texture2D" uid="uid://cb623jjip1ue3" path="res://assets/objects/BG_tileable.png" id="1_va8iy"]
+[ext_resource type="Texture2D" uid="uid://bhkrdrl55y7ia" path="res://assets/objects/Crosswalk_tileable.png" id="2_fppfu"]
+[ext_resource type="Script" path="res://scripts/tilemap.gd" id="3_8wkjj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kiufg"]
+resource_name = "Concrete"
+texture = ExtResource("1_va8iy")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kx4om"]
+resource_name = "Crosswalk"
+texture = ExtResource("2_fppfu")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_u7bda"]
+tile_size = Vector2i(512, 512)
+terrain_set_0/mode = 0
+sources/1 = SubResource("TileSetAtlasSource_kiufg")
+sources/2 = SubResource("TileSetAtlasSource_kx4om")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cr0f"]
+size = Vector2(1535, 303.5)
+
+[node name="Tilemap" type="TileMap"]
+tile_set = SubResource("TileSet_u7bda")
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 1, 1, 0, 2, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0)
+layer_1/name = "Paint"
+layer_1/tile_data = PackedInt32Array(1, 2, 0, 65537, 2, 0, 131073, 2, 0)
+script = ExtResource("3_8wkjj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(769, 1383)
+shape = SubResource("RectangleShape2D_3cr0f")

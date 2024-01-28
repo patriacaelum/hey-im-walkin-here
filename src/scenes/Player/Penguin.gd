@@ -1,3 +1,4 @@
+class_name Penguin
 extends CharacterBody2D
 
 

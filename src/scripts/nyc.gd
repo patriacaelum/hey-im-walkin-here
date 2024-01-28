@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_ui_started() -> void:
 	# Reset level to start
+	$Tilemap.reset()
 	$Penguin._reset()
 	$Penguin/Camera2D.position = Vector2(0, 0)
 	
