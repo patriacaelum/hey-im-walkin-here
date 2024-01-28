@@ -35,6 +35,7 @@ func _input(event: InputEvent) -> void:
 			self.velocity.y *= self.ROLL_FACTOR
 
 		self.is_rolling = true
+		self.animation_state = "roll"
 		$RollingTimer.start()
 
 
@@ -149,3 +150,4 @@ func _on_iframe_timer_timeout() -> void:
 func _on_rolling_timer_timeout() -> void:
 	self.velocity.y = self.SPEED
 	self.is_rolling = false
+	self.animation_state = "walking"
