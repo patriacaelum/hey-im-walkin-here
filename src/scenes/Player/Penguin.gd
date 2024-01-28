@@ -63,6 +63,7 @@ func _physics_process(delta: float) -> void:
 			self.velocity.x = move_toward(velocity.x, 0, self.SPEED)
 	
 	self.move_and_slide()
+	self.position.x = clamp(self.position.x, 0, self.get_viewport_rect().size.x)
 	$AnimationPlayer.play(animation_state)
 	
 	if animation_state == "slipping":
