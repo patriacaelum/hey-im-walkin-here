@@ -48,6 +48,7 @@ func set_sprite(type: CAR_TYPE) -> void:
 			$CarDeadSprite.hide()
 			$FancyAliveSprite.show()
 			$FancyDeadSprite.hide()
+			self.price *= 2
 
 	if self.speed > 0:
 		$CarAliveSprite.flip_h = true
