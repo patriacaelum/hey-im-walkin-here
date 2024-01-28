@@ -294,4 +294,7 @@ vframes = 2
 [node name="Grandma" parent="GrandmaHolder" instance=ExtResource("3_gs3d2")]
 position = Vector2(25, 14)
 
+[node name="IFrameTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
