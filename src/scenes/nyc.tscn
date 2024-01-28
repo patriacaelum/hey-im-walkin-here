@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c7gdetqk2nvdf" path="res://scenes/tilemap.tscn" id="2_jkfoj"]
 [ext_resource type="PackedScene" uid="uid://3o5lehmuqdll" path="res://scenes/ui.tscn" id="2_tubqy"]
 [ext_resource type="PackedScene" uid="uid://ctae8ynk80ucy" path="res://scenes/Player/Penguin.tscn" id="4_infgd"]
-[ext_resource type="PackedScene" uid="uid://wt64ob17ruo4" path="res://scenes/objects/directional_arrow.tscn" id="5_t1228"]
+[ext_resource type="PackedScene" path="res://scenes/objects/directional_arrow.tscn" id="5_t1228"]
 
 [node name="NYC" type="Node2D"]
 script = ExtResource("1_mmx8c")

@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbf85ax0geg0o"]
+[gd_scene load_steps=17 format=3 uid="uid://cbf85ax0geg0o"]
 
 [ext_resource type="Script" path="res://scenes/resting_spot.gd" id="1_ps0cm"]
 [ext_resource type="Texture2D" uid="uid://0uqn4pfab4tj" path="res://assets/objects/resting_spot_BG.png" id="2_h700y"]
 [ext_resource type="Texture2D" uid="uid://ctynsb11p8pct" path="res://assets/spritesheets/planter_tileset.png" id="3_n60wj"]
+[ext_resource type="Texture2D" uid="uid://cuwslfgkbvvr1" path="res://assets/objects/streetsign-stands.png" id="3_ttytw"]
 [ext_resource type="Texture2D" uid="uid://65m6oj2tndmx" path="res://assets/objects/spritesheet_bushes.png" id="4_0ah7i"]
 [ext_resource type="Texture2D" uid="uid://b6v5nljhulid8" path="res://assets/objects/streetlamp.png" id="5_vscm3"]
 [ext_resource type="Texture2D" uid="uid://ohpqdjynp7cv" path="res://assets/particles/txt_light.png" id="6_ce1so"]
+[ext_resource type="Texture2D" uid="uid://cmwh5cw50a4y" path="res://assets/objects/streetsign.png" id="7_gyv0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_748tp"]
 size = Vector2(1278, 1187)
@@ -84,6 +86,11 @@ shape = SubResource("RectangleShape2D_748tp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -32)
 texture = ExtResource("2_h700y")
+metadata/_edit_lock_ = true
+
+[node name="Streetsign-stands" type="Sprite2D" parent="."]
+position = Vector2(157, -184)
+texture = ExtResource("3_ttytw")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_7kkjr")
@@ -94,6 +101,7 @@ layer_1/name = "Planter"
 layer_1/tile_data = PackedInt32Array(-589819, 0, 0, -327675, 65536, 1, -786426, 0, 1, -327671, 65536, 1, -786422, 0, 1, -589811, 65536, 1, -524275, 0, 1, -589810, 65536, 0, -524274, 0, 1)
 layer_2/name = "Plants"
 layer_2/tile_data = PackedInt32Array(-589818, 1, 1, -589814, 65537, 1, -589810, 1, 0)
+metadata/_edit_lock_ = true
 
 [node name="StreetLight" type="Sprite2D" parent="."]
 position = Vector2(-145, -163)
@@ -131,6 +139,48 @@ libraries = {
 "": SubResource("AnimationLibrary_c8see")
 }
 autoplay = "blinking_light"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+offset_left = 100.0
+offset_top = -223.0
+offset_right = 211.41
+offset_bottom = -183.0
+rotation = 0.00872665
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_gyv0k")
+region_rect = Rect2(4.3918, 7.58185, 121.851, 48.836)
+patch_margin_left = 30
+patch_margin_right = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_right = 47.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 5
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/NinePatchRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="RestStopNumber" type="Label" parent="MarginContainer/NinePatchRect2/MarginContainer/HFlowContainer"]
+z_as_relative = false
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Street" type="Label" parent="MarginContainer/NinePatchRect2/MarginContainer/HFlowContainer"]
+layout_mode = 2
+text = "Street"
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
