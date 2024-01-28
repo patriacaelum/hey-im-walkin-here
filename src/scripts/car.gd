@@ -82,6 +82,5 @@ func __out_of_bounds() -> bool:
 	return left_boundary or right_boundary
 
 
-func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	# Disable cars when colliding with rest point
+func _on_area_2d_area_entered(area):
 	self._disable_car()
