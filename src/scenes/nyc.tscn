@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgbcssej3v3bw"]
+[gd_scene load_steps=5 format=3 uid="uid://f0i2dx0ig64o"]
 
 [ext_resource type="Script" path="res://scripts/nyc.gd" id="1_mmx8c"]
 [ext_resource type="PackedScene" uid="uid://c7gdetqk2nvdf" path="res://scenes/tilemap.tscn" id="2_jkfoj"]

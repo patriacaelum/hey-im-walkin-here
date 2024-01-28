@@ -6,7 +6,7 @@ signal purchased(price: int, upgrade_num: int)
 
 @export var price: int = 1
 @export var is_purchased: bool = false
-@export var upgrade_num: int = 0
+@export var upgrade_num: GLOBALS.Upgrades = GLOBALS.Upgrades.GRANDMA_ARMOUR
 
 
 func _ready() -> void:
