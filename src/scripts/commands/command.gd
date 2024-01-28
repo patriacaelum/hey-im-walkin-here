@@ -3,8 +3,8 @@ extends Node
 
 
 func execute() -> void:
-    pass
+	pass
 
 
 func undo() -> void:
-    pass
+	pass

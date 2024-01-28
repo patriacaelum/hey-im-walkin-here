@@ -5,7 +5,7 @@ var BananaPeelScene: PackedScene = preload("res://scenes/objects/banana_peel.tsc
 var CarScene: PackedScene = preload("res://scenes/car.tscn")
 var RestingScene: PackedScene = preload("res://scenes/resting_spot.tscn")
 var banana_peels_per_block: int = 15
-
+var rest_stop_counter: int = 0
 var banana_peel_block: int = 0
 var fancy_car_spawn_rate: float = 0.2
 
@@ -42,6 +42,7 @@ func _physics_process(delta: float) -> void:
 func _on_ui_started() -> void:
 	if !$Penguin.alive:
 		# Reset level to start
+		rest_stop_counter = 0
 		$Penguin._reset()
 		$Tilemap.reset()
 		$Penguin/Camera2D.position = Vector2(0, 0)
@@ -145,13 +146,17 @@ func _on_resting():
 		if child is Car:
 			child._disable_car()
 	$UI.set_mode(UI.MODE.UPGRADE)
-	self._spawn_next_rest()
+	_spawn_next_rest()
 	$Penguin._resting_pause()
 	$Penguin/Arrow.show()
 
 
 func _spawn_next_rest() -> void:
+	
+	rest_stop_counter += 1
+	
 	var rs: RestingSpot = RestingScene.instantiate()
+	rs.update_stop_label(rest_stop_counter)
 	rs.rest.connect(_on_resting)
 	if rest_y == 0:
 		rest_y = initial_rest_y
@@ -159,6 +164,6 @@ func _spawn_next_rest() -> void:
 		rest_y += (initial_rest_y * rest_multiplier)
 	rest_multiplier += 0.1
 	rs.position = Vector2(642, rest_y)
-	self.add_child(rs)
+	add_child(rs)
 	
 
