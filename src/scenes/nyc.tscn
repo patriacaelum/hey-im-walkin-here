@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://f0i2dx0ig64o"]
+[gd_scene load_steps=5 format=3 uid="uid://f0i2dx0ig64o"]
 
 [ext_resource type="Script" path="res://scripts/nyc.gd" id="1_mmx8c"]
+[ext_resource type="PackedScene" uid="uid://c7gdetqk2nvdf" path="res://scenes/tilemap.tscn" id="2_jkfoj"]
 [ext_resource type="PackedScene" uid="uid://3o5lehmuqdll" path="res://scenes/ui.tscn" id="2_tubqy"]
 [ext_resource type="PackedScene" uid="uid://ctae8ynk80ucy" path="res://scenes/Player/Penguin.tscn" id="4_infgd"]
 
 [node name="NYC" type="Node2D"]
 script = ExtResource("1_mmx8c")
+
+[node name="Tilemap" parent="." instance=ExtResource("2_jkfoj")]
+position = Vector2(-128, 0)
 
 [node name="CarSpawnTimer" type="Timer" parent="."]
 
