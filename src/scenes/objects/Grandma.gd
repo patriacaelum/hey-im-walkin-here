@@ -10,7 +10,10 @@ func _ready():
 	pass # Replace with function body.
 
 func randomizeColour():
-	$Spritesheet_Walking.modulate = Color.from_hsv(randf(), 0.64, 1.0)
+	var color = Color.from_hsv(randf(), 0.64, 1.0)
+	$Spritesheet_Walking.modulate = color
+	$Slipping.modulate = color
+	
 func play_animation(animation: String):
 	$AnimationPlayer.play(animation)
 
