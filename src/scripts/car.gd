@@ -1,12 +1,15 @@
 class_name Car
 extends CharacterBody2D
 
+
+signal animal_control_created
 signal crashed
 
 
 enum CAR_TYPE {
 	NORMAL,
 	FANCY,
+	ANIMAL_CONTROL,
 }
 
 
@@ -15,6 +18,7 @@ enum CAR_TYPE {
 var pos: Vector2
 var broken: bool = false
 var price: int = 5
+var target_x: float = 640
 
 var __car_type: CAR_TYPE = CAR_TYPE.NORMAL
 
@@ -29,7 +33,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	self.position.x += self.speed * delta
+	if self.__car_type == CAR_TYPE.ANIMAL_CONTROL:
+		var viewport: Rect2 = self.get_viewport_rect()
+		self.position = self.position.move_toward(
+			Vector2(self.target_x, viewport.position.y + viewport.size.y * 1.25),
+			self.speed * delta,
+		)
+		print(self.position)
+	else:
+		self.position.x += self.speed * delta
 
 	if self.__out_of_bounds():
 		self.queue_free()
@@ -51,6 +63,9 @@ func set_sprite(type: CAR_TYPE) -> void:
 			$FancyAliveSprite.show()
 			$FancyDeadSprite.hide()
 			$MoneyParticles.show()
+			self.price *= 3
+		CAR_TYPE.ANIMAL_CONTROL:
+			# Hide and show appropriate sprites
 			self.price *= 2
 
 	if self.speed > 0:
@@ -58,6 +73,7 @@ func set_sprite(type: CAR_TYPE) -> void:
 		$CarDeadSprite.flip_h = true
 		$FancyAliveSprite.flip_h = true
 		$FancyDeadSprite.flip_h = true
+		# Flip the right sprites
 
 func _disable_car() -> void:
 	speed = 0
@@ -70,6 +86,9 @@ func _disable_car() -> void:
 		CAR_TYPE.FANCY:
 			$FancyAliveSprite.hide()
 			$FancyDeadSprite.show()
+		CAR_TYPE.ANIMAL_CONTROL:
+			# show and hide appropriate sprites
+			pass
 
 	$SmokeParticles.emitting = true
 	
