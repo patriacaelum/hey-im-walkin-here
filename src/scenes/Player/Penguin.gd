@@ -12,6 +12,7 @@ var armour: int = 0
 var animation_state: String = "walking"
 var bp_ratio: float = 1.0
 var upgrades: Array = []
+var invincible: bool = false
 
 const SPEED = 100.0
 const INIT_POSITION = Vector2(636, 57)
@@ -19,6 +20,7 @@ const INIT_POSITION = Vector2(636, 57)
 
 func _ready() -> void:
 	self.velocity.y = SPEED
+	$IFrameTimer.timeout.connect(self._on_iframe_timer_timeout)
 
 
 func _physics_process(delta: float) -> void:
@@ -49,13 +51,16 @@ func _on_area_2d_body_entered(body):
 		self.walking = false
 		self.alive = false
 		penguin_collision.emit(body)
+		self.invincible = false
+	else:
+		self.invincible = true
+		$IFrameTimer.start()
 
 
 func _resting_pause():
 	self.walking = false
 	self.animation_state = "walking"
 	self.restore_armour()
-	
 
 
 func play_timed_animation(animation: String, time: float) -> void:
@@ -74,6 +79,9 @@ func play_timed_animation(animation: String, time: float) -> void:
 	
 
 func remove_armour() -> void:
+	if self.invincible:
+		return
+
 	$GrandmaHolder/Grandma.armour_active = false
 	self.armour -= 1
 
@@ -111,3 +119,7 @@ func _apply_upgrade(upgrade):
 
 	if upgrade == GLOBALS.Upgrades.MORE_BANANAS:
 		self.bp_ratio += 0.25
+
+
+func _on_iframe_timer_timeout() -> void:
+	self.invincible = false
