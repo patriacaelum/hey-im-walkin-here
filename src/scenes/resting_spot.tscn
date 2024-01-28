@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbf85ax0geg0o"]
+
+[ext_resource type="Texture2D" uid="uid://dcbqt7qgwqerf" path="res://assets/objects/resting.png" id="1_d2o4i"]
+[ext_resource type="Script" path="res://scenes/resting_spot.gd" id="1_ps0cm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_748tp"]
+size = Vector2(1278, 1187)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ps0cm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 450.5)
+shape = SubResource("RectangleShape2D_748tp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(-0.290466, 0.30973)
+texture = ExtResource("1_d2o4i")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -48,6 +48,7 @@ func set_sprite(type: CAR_TYPE) -> void:
 			$CarDeadSprite.hide()
 			$FancyAliveSprite.show()
 			$FancyDeadSprite.hide()
+			self.price *= 2
 
 	if self.speed > 0:
 		$CarAliveSprite.flip_h = true
@@ -55,11 +56,7 @@ func set_sprite(type: CAR_TYPE) -> void:
 		$FancyAliveSprite.flip_h = true
 		$FancyDeadSprite.flip_h = true
 
-
-func _on_area_2d_body_entered(body: Node) -> void:
-	if body.get_instance_id() == self.get_instance_id():
-		return
-
+func _disable_car() -> void:
 	speed = 0
 	broken = true
 
@@ -72,10 +69,19 @@ func _on_area_2d_body_entered(body: Node) -> void:
 			$FancyDeadSprite.show()
 
 	$SmokeParticles.emitting = true
-
+	
+func _on_area_2d_body_entered(body: Node) -> void:
+	if body.get_instance_id() == self.get_instance_id():
+		return
+	self._disable_car()
 
 func __out_of_bounds() -> bool:
 	var left_boundary: bool = self.position.x < -self.POS_X_BUFFER
 	var right_boundary: bool = self.position.x > self.get_viewport_rect().size.x + self.POS_X_BUFFER
 
 	return left_boundary or right_boundary
+
+
+func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	# Disable cars when colliding with rest point
+	self._disable_car()

@@ -7,12 +7,14 @@ signal currency_collected(amount: int)
 
 
 var walking: bool = false
+var alive: bool = true
 var armour: int = 0
 var animation_state: String = "walking"
 var bp_ratio: float = 1.0
 var upgrades: Array = []
 
 const SPEED = 100.0
+const INIT_POSITION = Vector2(636, 57)
 
 
 func _ready() -> void:
@@ -45,7 +47,14 @@ func _on_area_2d_body_entered(body):
 
 	if self.armour < 0:
 		self.walking = false
+		self.alive = false
 		penguin_collision.emit(body)
+		
+func _resting_pause():
+	self.walking = false
+	self.animation_state = "walking"
+	self.restore_armour()
+	
 
 
 func play_timed_animation(animation: String, time: float) -> void:
@@ -64,7 +73,7 @@ func play_timed_animation(animation: String, time: float) -> void:
 	
 
 func remove_armour() -> void:
-	armour -= 1
+
 	$GrandmaHolder/Grandma.armour_active = false
 
 
@@ -80,6 +89,13 @@ func _reset():
 		$GrandmaHolder/Grandma.armour_active = true
 
 
+func _reset():
+	self.position = INIT_POSITION
+	self.velocity.y = SPEED
+	self.animation_state = "walking"
+	self.alive = true
+	self.restore_armour()
+
 func _add_upgrade(upgrade):
 	# Add and track upgrade on penguin
 	upgrades.append(upgrade)
@@ -89,6 +105,7 @@ func _add_upgrade(upgrade):
 func _apply_upgrade(upgrade):
 	if upgrade == GLOBALS.Upgrades.GRANDMA_ARMOUR:
 		$GrandmaHolder/Grandma.is_purchased = true
+		self.armour += 1
+
 	if upgrade == GLOBALS.Upgrades.MORE_BANANAS:
 		self.bp_ratio += 0.25
-	

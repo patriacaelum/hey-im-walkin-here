@@ -23,7 +23,7 @@ sources/1 = SubResource("TileSetAtlasSource_kiufg")
 sources/2 = SubResource("TileSetAtlasSource_kx4om")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cr0f"]
-size = Vector2(1535, 303.5)
+size = Vector2(1535, 578.75)
 
 [node name="Tilemap" type="TileMap"]
 tile_set = SubResource("TileSet_u7bda")
@@ -39,5 +39,5 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(769, 1383)
+position = Vector2(769, 1245.38)
 shape = SubResource("RectangleShape2D_3cr0f")
