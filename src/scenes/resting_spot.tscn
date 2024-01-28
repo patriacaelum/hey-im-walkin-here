@@ -1,10 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbf85ax0geg0o"]
+[gd_scene load_steps=15 format=3 uid="uid://cbf85ax0geg0o"]
 
-[ext_resource type="Texture2D" uid="uid://dcbqt7qgwqerf" path="res://assets/objects/resting.png" id="1_d2o4i"]
 [ext_resource type="Script" path="res://scenes/resting_spot.gd" id="1_ps0cm"]
+[ext_resource type="Texture2D" uid="uid://0uqn4pfab4tj" path="res://assets/objects/resting_spot_BG.png" id="2_h700y"]
+[ext_resource type="Texture2D" uid="uid://ctynsb11p8pct" path="res://assets/spritesheets/planter_tileset.png" id="3_n60wj"]
+[ext_resource type="Texture2D" uid="uid://65m6oj2tndmx" path="res://assets/objects/spritesheet_bushes.png" id="4_0ah7i"]
+[ext_resource type="Texture2D" uid="uid://b6v5nljhulid8" path="res://assets/objects/streetlamp.png" id="5_vscm3"]
+[ext_resource type="Texture2D" uid="uid://ohpqdjynp7cv" path="res://assets/particles/txt_light.png" id="6_ce1so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_748tp"]
 size = Vector2(1278, 1187)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u1nht"]
+texture = ExtResource("3_n60wj")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2p18u"]
+texture = ExtResource("4_0ah7i")
+texture_region_size = Vector2i(64, 64)
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7kkjr"]
+sources/0 = SubResource("TileSetAtlasSource_u1nht")
+sources/1 = SubResource("TileSetAtlasSource_2p18u")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p3mkr"]
+polygon = PackedVector2Array(-9, -75, -11, -79, -24, -79, -25, -77, -25, -74, -101, -70, -112, -129, 73, -128, 110, -72)
+
+[sub_resource type="Animation" id="Animation_xh3fk"]
+resource_name = "blinking_light"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StreetLight/PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0, 0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vlgmt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StreetLight/PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8see"]
+_data = {
+"RESET": SubResource("Animation_vlgmt"),
+"blinking_light": SubResource("Animation_xh3fk")
+}
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_ps0cm")
@@ -14,8 +81,55 @@ position = Vector2(0, 450.5)
 shape = SubResource("RectangleShape2D_748tp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(-0.290466, 0.30973)
-texture = ExtResource("1_d2o4i")
+position = Vector2(3, -32)
+texture = ExtResource("2_h700y")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_7kkjr")
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array(-524283, 131072, 1, -524279, 131072, 1, -524275, 131072, 1)
+layer_1/name = "Planter"
+layer_1/tile_data = PackedInt32Array(-589819, 0, 0, -327675, 65536, 1, -786426, 0, 1, -327671, 65536, 1, -786422, 0, 1, -589811, 65536, 1, -524275, 0, 1, -589810, 65536, 0, -524274, 0, 1)
+layer_2/name = "Plants"
+layer_2/tile_data = PackedInt32Array(-589818, 1, 1, -589814, 65537, 1, -589810, 1, 0)
+
+[node name="StreetLight" type="Sprite2D" parent="."]
+position = Vector2(-145, -163)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_vscm3")
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="StreetLight"]
+position = Vector2(-40, 1)
+rotation = 3.14159
+scale = Vector2(1, -1)
+shadow_enabled = true
+texture = ExtResource("6_ce1so")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StreetLight"]
+occluder = SubResource("OccluderPolygon2D_p3mkr")
+
+[node name="StreetLight2" type="Sprite2D" parent="."]
+position = Vector2(211, -157)
+texture = ExtResource("5_vscm3")
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="StreetLight2"]
+position = Vector2(-34, 2)
+rotation = 3.14159
+scale = Vector2(1, -1)
+shadow_enabled = true
+texture = ExtResource("6_ce1so")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StreetLight2"]
+occluder = SubResource("OccluderPolygon2D_p3mkr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c8see")
+}
+autoplay = "blinking_light"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
