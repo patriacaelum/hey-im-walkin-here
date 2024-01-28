@@ -15,6 +15,7 @@ var upgrades: Array = []
 var is_invincible: bool = false
 var is_rolling: bool = false
 var is_sliding: bool = false
+var is_boosted: bool = false
 
 const SPEED: float = 100.0
 const INIT_POSITION: Vector2 = Vector2(636, 57)
@@ -55,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	if not self.walking:
 		return
 
-	if not self.is_rolling:
+	if not self.is_rolling && not self.is_boosted:
 		var direction_x = Input.get_axis("ui_left", "ui_right")
 		if direction_x:
 			self.velocity.x = direction_x * self.SPEED
