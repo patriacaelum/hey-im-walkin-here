@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctae8ynk80ucy"]
+[gd_scene load_steps=17 format=3 uid="uid://ctae8ynk80ucy"]
 
 [ext_resource type="Script" path="res://scenes/Player/Penguin.gd" id="1_18p7e"]
 [ext_resource type="Texture2D" uid="uid://u2dstmoqwg0y" path="res://assets/characters/Sprite_Penguin.png" id="2_6xhs7"]
 [ext_resource type="PackedScene" uid="uid://byjn0k125nf7b" path="res://scenes/objects/Grandma.tscn" id="3_gs3d2"]
 [ext_resource type="Texture2D" uid="uid://dapl4og13q562" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Walk.png" id="3_xy5k3"]
 [ext_resource type="Texture2D" uid="uid://b5257a86lfcoe" path="res://assets/spritesheets/Spritesheet-64x64-Penguin-Slip.png" id="4_ug8i7"]
-[ext_resource type="Script" path="res://scenes/Player/Money.gd" id="6_j6y58"]
+[ext_resource type="Script" path="res://scenes/Money.gd" id="6_j6y58"]
 [ext_resource type="Texture2D" uid="uid://fak538y1g4q" path="res://assets/objects/money.png" id="7_chhn1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tc7sv"]
@@ -254,12 +254,24 @@ _data = {
 "walking": SubResource("Animation_xitc7")
 }
 
+[sub_resource type="GDScript" id="GDScript_b4sls"]
+script/source = "extends Path2D
+
+var inc=0
+var speed=500
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	inc+=delta*speed
+	$PathFollow2D.offset=inc
+"
+
 [sub_resource type="Curve2D" id="Curve2D_5leto"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -100)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -50)
 }
 point_count = 2
-script = null
+script = SubResource("GDScript_b4sls")
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_18p7e")
@@ -307,19 +319,18 @@ position = Vector2(25, 14)
 one_shot = true
 
 [node name="Money" type="Node2D" parent="."]
-visible = false
-position = Vector2(0, -40)
 script = ExtResource("6_j6y58")
 
 [node name="Path2D" type="Path2D" parent="Money"]
+position = Vector2(0, -40)
 curve = SubResource("Curve2D_5leto")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Money/Path2D"]
 rotation = -1.5708
-loop = false
 
 [node name="Money" type="Sprite2D" parent="Money/Path2D/PathFollow2D"]
-rotation = 1.5708
+z_index = -1
+position = Vector2(0, -40)
 texture = ExtResource("7_chhn1")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

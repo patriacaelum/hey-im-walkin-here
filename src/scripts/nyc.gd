@@ -108,6 +108,7 @@ func __spawn_banana_peels(y_min: int) -> void:
 
 
 func _on_penguin_currency_collected(amount: int) -> void:
+	$Penguin/Money.start()
 	$UI.add_currency(amount)
 
 func _on_resting():
