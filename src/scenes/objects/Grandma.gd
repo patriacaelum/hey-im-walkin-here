@@ -9,6 +9,8 @@ func _ready():
 	$AnimationPlayer.play("walking")
 	pass # Replace with function body.
 
+func randomizeColour():
+	$Spritesheet_Walking.modulate = Color.from_hsv(randf(), 0.64, 1.0)
 func play_animation(animation: String):
 	$AnimationPlayer.play(animation)
 

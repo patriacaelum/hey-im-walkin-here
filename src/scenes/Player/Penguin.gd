@@ -104,6 +104,7 @@ func _reset():
 		# If armour is +=1 after a reset you'll die in one hit
 		armour = 1
 		$GrandmaHolder/Grandma.armour_active = true
+		$GrandmaHolder/Grandma.randomizeColour()
 
 
 func _add_upgrade(upgrade):
