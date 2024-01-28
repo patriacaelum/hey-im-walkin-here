@@ -37,8 +37,8 @@ func _physics_process(delta: float) -> void:
 func _on_ui_started() -> void:
 	if !$Penguin.alive:
 		# Reset level to start
-		$Tilemap.reset()
 		$Penguin._reset()
+		$Tilemap.reset()
 		$Penguin/Camera2D.position = Vector2(0, 0)
 		
 		for child: Node in $Cars.get_children():
