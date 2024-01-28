@@ -37,8 +37,8 @@ func _physics_process(delta: float) -> void:
 func _on_ui_started() -> void:
 	if !$Penguin.alive:
 		# Reset level to start
-		$Tilemap.reset()
 		$Penguin._reset()
+		$Tilemap.reset()
 		$Penguin/Camera2D.position = Vector2(0, 0)
 		
 		for child: Node in $Cars.get_children():
@@ -116,10 +116,10 @@ func _on_resting():
 	for child: Node in $Cars.get_children():
 		if child is Car:
 			child._disable_car()
-	$UI.show()
+	$UI.set_mode(UI.MODE.UPGRADE)
 	self._spawn_next_rest()
 	$Penguin._resting_pause()
-	pass
+
 
 func _spawn_next_rest() -> void:
 	var rs: RestingSpot = RestingScene.instantiate()
@@ -128,7 +128,7 @@ func _spawn_next_rest() -> void:
 		rest_y = initial_rest_y
 	else :
 		rest_y += (initial_rest_y * rest_multiplier)
-	rest_multiplier *= rest_multiplier
+	rest_multiplier += 0.1
 	rs.position = Vector2(642, rest_y)
 	self.add_child(rs)
 	

@@ -11,6 +11,8 @@ func _ready():
 
 func randomizeColour():
 	$Spritesheet_Walking.modulate = Color.from_hsv(randf(), 0.64, 1.0)
+func play_animation(animation: String):
+	$AnimationPlayer.play(animation)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

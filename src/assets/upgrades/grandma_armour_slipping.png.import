@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwjsa2jhe3v14"
-path="res://.godot/imported/decal-bike.png-976fd374dbfa54cdadc8c24ea55ae9e5.ctex"
+uid="uid://dvtjhnmxe8udc"
+path="res://.godot/imported/grandma_armour_slipping.png-28a853459859015222b60fc0e9852be5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/decals/decal-bike.png"
-dest_files=["res://.godot/imported/decal-bike.png-976fd374dbfa54cdadc8c24ea55ae9e5.ctex"]
+source_file="res://assets/upgrades/grandma_armour_slipping.png"
+dest_files=["res://.godot/imported/grandma_armour_slipping.png-28a853459859015222b60fc0e9852be5.ctex"]
 
 [params]
 

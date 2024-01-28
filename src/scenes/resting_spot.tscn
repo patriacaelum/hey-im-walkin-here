@@ -4,13 +4,14 @@
 [ext_resource type="Script" path="res://scenes/resting_spot.gd" id="1_ps0cm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_748tp"]
-size = Vector2(1278, 421.25)
+size = Vector2(1278, 1187)
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 8
 script = ExtResource("1_ps0cm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 67.625)
+position = Vector2(0, 450.5)
 shape = SubResource("RectangleShape2D_748tp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
