@@ -297,4 +297,8 @@ position = Vector2(25, 14)
 [node name="IFrameTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="RollingTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

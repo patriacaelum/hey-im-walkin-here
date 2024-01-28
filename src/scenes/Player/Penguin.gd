@@ -12,26 +12,42 @@ var armour: int = 0
 var animation_state: String = "walking"
 var bp_ratio: float = 1.0
 var upgrades: Array = []
-var invincible: bool = false
+var is_invincible: bool = false
+var is_rolling: bool = false
+var is_sliding: bool = false
 
-const SPEED = 100.0
-const INIT_POSITION = Vector2(636, 57)
+const SPEED: float = 100.0
+const INIT_POSITION: Vector2 = Vector2(636, 57)
+const ROLL_FACTOR: float = 3.5
 
 
 func _ready() -> void:
 	self.velocity.y = SPEED
 	$IFrameTimer.timeout.connect(self._on_iframe_timer_timeout)
+	$RollingTimer.timeout.connect(self._on_rolling_timer_timeout)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept") and not self.is_rolling and not self.is_sliding:
+		if self.velocity.x != 0:
+			self.velocity.x *= self.ROLL_FACTOR
+		else:
+			self.velocity.y *= self.ROLL_FACTOR
+
+		self.is_rolling = true
+		$RollingTimer.start()
 
 
 func _physics_process(delta: float) -> void:
 	if not self.walking:
 		return
 
-	var direction_x = Input.get_axis("ui_left", "ui_right")
-	if direction_x:
-		self.velocity.x = direction_x * SPEED
-	else:
-		self.velocity.x = move_toward(velocity.x, 0, SPEED)
+	if not self.is_rolling:
+		var direction_x = Input.get_axis("ui_left", "ui_right")
+		if direction_x:
+			self.velocity.x = direction_x * self.SPEED
+		else:
+			self.velocity.x = move_toward(velocity.x, 0, self.SPEED)
 	
 	self.move_and_slide()
 	$AnimationPlayer.play(animation_state)
@@ -51,9 +67,11 @@ func _on_area_2d_body_entered(body):
 		self.walking = false
 		self.alive = false
 		penguin_collision.emit(body)
-		self.invincible = false
+		self.is_invincible = false
+		self.is_rolling = false
+		self.is_sliding = false
 	else:
-		self.invincible = true
+		self.is_invincible = true
 		$IFrameTimer.start()
 
 
@@ -79,7 +97,7 @@ func play_timed_animation(animation: String, time: float) -> void:
 	
 
 func remove_armour() -> void:
-	if self.invincible:
+	if self.is_invincible:
 		return
 
 	$GrandmaHolder/Grandma.armour_active = false
@@ -98,6 +116,8 @@ func _reset():
 	self.velocity.y = SPEED
 	self.animation_state = "walking"
 	self.alive = true
+	self.is_rolling = false
+	self.is_sliding = false
 	self.restore_armour()
 	$GrandmaHolder.rotation = 0
 	if $GrandmaHolder/Grandma.is_purchased:
@@ -123,4 +143,9 @@ func _apply_upgrade(upgrade):
 
 
 func _on_iframe_timer_timeout() -> void:
-	self.invincible = false
+	self.is_invincible = false
+
+
+func _on_rolling_timer_timeout() -> void:
+	self.velocity.y = self.SPEED
+	self.is_rolling = false
