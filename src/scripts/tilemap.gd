@@ -11,4 +11,4 @@ func reset() -> void:
 
 func _on_area_2d_body_entered(body: Node) -> void:
 	if body is Penguin:
-		self.position.y += 512
+		self.position.y += 1024
