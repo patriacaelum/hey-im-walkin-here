@@ -49,7 +49,8 @@ func _on_area_2d_body_entered(body):
 		self.walking = false
 		self.alive = false
 		penguin_collision.emit(body)
-		
+
+
 func _resting_pause():
 	self.walking = false
 	self.animation_state = "walking"
@@ -73,16 +74,11 @@ func play_timed_animation(animation: String, time: float) -> void:
 	
 
 func remove_armour() -> void:
-
 	$GrandmaHolder/Grandma.armour_active = false
+	self.armour -= 1
 
 
-func _reset():
-	self.position = Vector2(636, 57)
-	self.velocity.y = SPEED
-	self.animation_state = "walking"
-	print('resetting level')
-	$GrandmaHolder.rotation = 0
+func restore_armour():
 	if $GrandmaHolder/Grandma.is_purchased:
 		# If armour is +=1 after a reset you'll die in one hit
 		armour = 1
@@ -95,6 +91,12 @@ func _reset():
 	self.animation_state = "walking"
 	self.alive = true
 	self.restore_armour()
+	$GrandmaHolder.rotation = 0
+	if $GrandmaHolder/Grandma.is_purchased:
+		# If armour is +=1 after a reset you'll die in one hit
+		armour = 1
+		$GrandmaHolder/Grandma.armour_active = true
+
 
 func _add_upgrade(upgrade):
 	# Add and track upgrade on penguin
