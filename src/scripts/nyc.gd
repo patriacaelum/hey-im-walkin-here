@@ -3,10 +3,15 @@ extends Node2D
 
 var BananaPeelScene: PackedScene = preload("res://scenes/objects/banana_peel.tscn")
 var CarScene: PackedScene = preload("res://scenes/car.tscn")
+var RestingScene: PackedScene = preload("res://scenes/resting_spot.tscn")
 var banana_peels_per_block: int = 15
 
 var banana_peel_block: int = 0
 var fancy_car_spawn_rate: float = 0.2
+
+const initial_rest_y: int = 3000
+var rest_multiplier: float = 1.1
+var rest_y: int = 0
 
 
 func _ready() -> void:
@@ -15,6 +20,7 @@ func _ready() -> void:
 	$Penguin.currency_collected.connect(self._on_penguin_currency_collected)
 
 	var view_y = int(self.get_viewport_rect().size.y)
+	self._spawn_next_rest()
 	self.__spawn_banana_peels(view_y)
 	self.banana_peel_block = view_y
 
@@ -27,19 +33,27 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_ui_started() -> void:
-	# Reset level to start
-	$Tilemap.reset()
-	$Penguin._reset()
-	$Penguin/Camera2D.position = Vector2(0, 0)
-	
-	for child: Node in $Cars.get_children():
-		if child is Car:
-			child.queue_free()
-			
-	for child: Node in self.get_children():
-		if child is BananaPeel:
-			child.queue_free()
-	banana_peel_block = 0
+	if !$Penguin.alive:
+		# Reset level to start
+		$Tilemap.reset()
+		$Penguin._reset()
+		$Penguin/Camera2D.position = Vector2(0, 0)
+		
+		for child: Node in $Cars.get_children():
+			if child is Car:
+				child.queue_free()
+				
+		for child: Node in self.get_children():
+			if child is BananaPeel:
+				child.queue_free()
+		banana_peel_block = 0
+		
+		for child: Node in self.get_children():
+			if child is RestingSpot:
+				child.queue_free()
+		rest_y = 0
+		rest_multiplier = 1.1
+		self._spawn_next_rest()
 	
 	# Begin
 	$Penguin.walking = true
@@ -94,3 +108,27 @@ func __spawn_banana_peels(y_min: int) -> void:
 
 func _on_penguin_currency_collected(amount: int) -> void:
 	$UI.add_currency(amount)
+
+func _on_resting():
+	# Stop car spawn and disable any current cars
+	$CarSpawnTimer.stop()
+	for child: Node in $Cars.get_children():
+		if child is Car:
+			child._disable_car()
+	$UI.show()
+	self._spawn_next_rest()
+	$Penguin._resting_pause()
+	pass
+
+func _spawn_next_rest() -> void:
+	var rs: RestingSpot = RestingScene.instantiate()
+	rs.rest.connect(_on_resting)
+	if rest_y == 0:
+		rest_y = initial_rest_y
+	else :
+		rest_y += (initial_rest_y * rest_multiplier)
+	rest_multiplier *= rest_multiplier
+	rs.position = Vector2(642, rest_y)
+	self.add_child(rs)
+	
+

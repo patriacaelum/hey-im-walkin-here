@@ -55,11 +55,7 @@ func set_sprite(type: CAR_TYPE) -> void:
 		$FancyAliveSprite.flip_h = true
 		$FancyDeadSprite.flip_h = true
 
-
-func _on_area_2d_body_entered(body: Node) -> void:
-	if body.get_instance_id() == self.get_instance_id():
-		return
-
+func _disable_car() -> void:
 	speed = 0
 	broken = true
 
@@ -72,7 +68,11 @@ func _on_area_2d_body_entered(body: Node) -> void:
 			$FancyDeadSprite.show()
 
 	$SmokeParticles.emitting = true
-
+	
+func _on_area_2d_body_entered(body: Node) -> void:
+	if body.get_instance_id() == self.get_instance_id():
+		return
+	self._disable_car()
 
 func __out_of_bounds() -> bool:
 	var left_boundary: bool = self.position.x < -self.POS_X_BUFFER
