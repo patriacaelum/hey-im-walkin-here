@@ -25,6 +25,8 @@ func _physics_process(delta: float) -> void:
 		self.__spawn_banana_peels($Penguin.position.y + view_y)
 		self.banana_peel_block += view_y
 
+	$UI.update_score(int($Penguin.position.y / 10))
+
 
 func _on_ui_started() -> void:
 	# Reset level to start
@@ -48,7 +50,8 @@ func _on_ui_started() -> void:
 
 func _on_crash_penguin(body) -> void:
 	$CarSpawnTimer.stop()
-	$UI.show()
+	$UI.update_highscore()
+	$UI.set_mode(UI.MODE.UPGRADE)
 	
 
 func _on_ui_upgrade_purchased(upgrade) -> void:

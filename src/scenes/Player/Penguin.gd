@@ -78,6 +78,6 @@ func _add_upgrade(upgrade):
 func _apply_upgrade(upgrade):
 	if upgrade == GLOBALS.Upgrades.GRANDMA_ARMOUR:
 		$Grandma.is_purchased = true
+		self.armour += 1
 	if upgrade == GLOBALS.Upgrades.MORE_BANANAS:
 		self.bp_ratio += 0.25
-	
