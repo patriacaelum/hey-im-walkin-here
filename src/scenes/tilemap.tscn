@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://c7gdetqk2nvdf"]
 
-[ext_resource type="Texture2D" uid="uid://cpjwe35f8ogpu" path="res://assets/decals/decal-walk.png" id="1_nwmkm"]
+[ext_resource type="Texture2D" uid="uid://cpvppw8evqb7w" path="res://assets/decals/decal-walk.png" id="1_nwmkm"]
 [ext_resource type="Texture2D" uid="uid://cb623jjip1ue3" path="res://assets/objects/BG_tileable.png" id="1_va8iy"]
 [ext_resource type="Texture2D" uid="uid://bhkrdrl55y7ia" path="res://assets/objects/Crosswalk_tileable.png" id="2_fppfu"]
 [ext_resource type="Script" path="res://scripts/tilemap.gd" id="3_8wkjj"]
-[ext_resource type="Texture2D" uid="uid://1x50kkj32ss" path="res://assets/decals/decal-bike.png" id="4_qdj40"]
+[ext_resource type="Texture2D" uid="uid://dwjsa2jhe3v14" path="res://assets/decals/decal-bike.png" id="4_qdj40"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrlcu"]
 texture = ExtResource("1_nwmkm")

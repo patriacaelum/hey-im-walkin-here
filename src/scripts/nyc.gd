@@ -20,6 +20,7 @@ const CAR_SPAWN_MULTIPLIER_CHANGE_RATE: float = 0.9
 
 
 func _ready() -> void:
+	$Penguin/Arrow.show()
 	$UI.started.connect(self._on_ui_started)
 	$CarSpawnTimer.timeout.connect(self._on_car_spawn_timer_timeout)
 	$Penguin.currency_collected.connect(self._on_penguin_currency_collected)
