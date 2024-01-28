@@ -28,7 +28,7 @@ func _ready() -> void:
 	for upgrade: Node in $GridContainer.get_children():
 		if upgrade is UpgradeButton:
 			upgrade.purchased.connect(self._on_purchased_upgrade_button)
-	
+
 	self.update_upgrade_buttons()
 
 
