@@ -59,14 +59,28 @@ func set_sprite(type: CAR_TYPE) -> void:
 			$FancyAliveSprite.hide()
 			$FancyDeadSprite.hide()
 			$MoneyParticles.hide()
+			$AnimalControlAlive.hide()
+			$AnimalControlDead.hide()
+			$AnimalControlNet.hide()
 		CAR_TYPE.FANCY:
 			$CarAliveSprite.hide()
 			$CarDeadSprite.hide()
 			$FancyAliveSprite.show()
 			$FancyDeadSprite.hide()
 			$MoneyParticles.show()
+			$AnimalControlAlive.hide()
+			$AnimalControlDead.hide()
+			$AnimalControlNet.hide()
 			self.price *= 3
 		CAR_TYPE.ANIMAL_CONTROL:
+			$AnimalControlAlive.show()
+			$AnimalControlNet.show()
+			$AnimalControlDead.hide()
+			$FancyAliveSprite.hide()
+			$FancyDeadSprite.hide()
+			$CarAliveSprite.hide()
+			$CarDeadSprite.hide()
+			$AnimationPlayer.play("net")
 			# Hide and show appropriate sprites
 			self.price *= 2
 
@@ -75,6 +89,9 @@ func set_sprite(type: CAR_TYPE) -> void:
 		$CarDeadSprite.flip_h = true
 		$FancyAliveSprite.flip_h = true
 		$FancyDeadSprite.flip_h = true
+		$AnimalControlAlive.flip_h = true
+		$AnimalControlDead.flip_h = true
+		$AnimalControlNet.flip_h = true
 		# Flip the right sprites
 
 func _disable_car() -> void:
@@ -89,6 +106,8 @@ func _disable_car() -> void:
 			$FancyAliveSprite.hide()
 			$FancyDeadSprite.show()
 		CAR_TYPE.ANIMAL_CONTROL:
+			$AnimalControlAlive.hide()
+			$AnimalControlDead.show()
 			# show and hide appropriate sprites
 			pass
 

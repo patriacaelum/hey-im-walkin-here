@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1d3yhdsd7hp7"]
+[gd_scene load_steps=18 format=3 uid="uid://c1d3yhdsd7hp7"]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_yjr6w"]
 [ext_resource type="Texture2D" uid="uid://dgnv0krv6nn4n" path="res://assets/enemies/Car_Alive.png" id="2_jvorx"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dyccki24yxhgh" path="res://assets/particles/txt_alpha_soft.png" id="4_lsmnx"]
 [ext_resource type="Texture2D" uid="uid://dvj5fi6p87wig" path="res://assets/enemies/FancyCar_Alive.png" id="4_yo1kr"]
 [ext_resource type="Texture2D" uid="uid://bc5q2pqtevdoi" path="res://assets/enemies/FancyCar_Dead.png" id="5_14fvd"]
+[ext_resource type="Texture2D" uid="uid://cpwrkxvp5tllh" path="res://assets/enemies/AnimalControl_Alive.png" id="6_cwwxw"]
+[ext_resource type="Texture2D" uid="uid://duiyucw63qqv6" path="res://assets/enemies/AnimalControl_Dead.png" id="7_1aqpm"]
 [ext_resource type="Texture2D" uid="uid://hvsgrs1kuryl" path="res://assets/particles/FX-MONEY.png" id="7_ch5q6"]
 [ext_resource type="Texture2D" uid="uid://dk0k3asogx822" path="res://assets/particles/LightingStrike.png" id="8_3admm"]
+[ext_resource type="Texture2D" uid="uid://c84tfpllogdg5" path="res://assets/enemies/AnimalControl_Net.png" id="8_ad1l6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sojae"]
 size = Vector2(56, 34)
@@ -118,11 +121,65 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimalControlNet:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimalControlNet:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_g1h50"]
+resource_name = "net"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimalControlNet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimalControlNet:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r11qm"]
 _data = {
 "RESET": SubResource("Animation_ddbwe"),
-"lightning": SubResource("Animation_1posi")
+"lightning": SubResource("Animation_1posi"),
+"net": SubResource("Animation_g1h50")
 }
 
 [node name="Car" type="CharacterBody2D"]
@@ -148,6 +205,24 @@ texture = ExtResource("4_yo1kr")
 [node name="FancyDeadSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("5_14fvd")
+
+[node name="AnimalControlAlive" type="Sprite2D" parent="."]
+visible = false
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("6_cwwxw")
+
+[node name="AnimalControlDead" type="Sprite2D" parent="."]
+visible = false
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("7_1aqpm")
+
+[node name="AnimalControlNet" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(-1, 1)
+texture = ExtResource("8_ad1l6")
+hframes = 5
 
 [node name="SmokeParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-19, 0)

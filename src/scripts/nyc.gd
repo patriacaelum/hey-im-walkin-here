@@ -8,7 +8,7 @@ var banana_peels_per_block: int = 15
 var rest_stop_counter: int = 0
 var banana_peel_block: int = 0
 var fancy_car_spawn_rate: float = 0.2
-var animal_control_spawn_rate: float = 0.05
+var animal_control_spawn_rate: float = .2
 
 const initial_rest_y: int = 3000
 var rest_multiplier: float = 1.1
