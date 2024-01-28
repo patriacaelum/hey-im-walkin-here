@@ -8,6 +8,7 @@ var banana_peels_per_block: int = 15
 var rest_stop_counter: int = 0
 var banana_peel_block: int = 0
 var fancy_car_spawn_rate: float = 0.2
+var animal_control_spawn_rate: float = 0.05
 
 const initial_rest_y: int = 3000
 var rest_multiplier: float = 1.1
@@ -110,6 +111,8 @@ func _on_car_spawn_timer_timeout() -> void:
 	var car_type: Car.CAR_TYPE = Car.CAR_TYPE.NORMAL
 	if randf() < self.fancy_car_spawn_rate:
 		car_type = Car.CAR_TYPE.FANCY
+	elif randf() < self.animal_control_spawn_rate:
+		car_type = Car.CAR_TYPE.ANIMAL_CONTROL
 
 	car.speed = -side * randi_range(car.SPEED_MIN, car.SPEED_MAX)
 	var midpoint: int = int(self.get_viewport_rect().size.x / 2)
@@ -117,6 +120,9 @@ func _on_car_spawn_timer_timeout() -> void:
 		midpoint + side * (midpoint + car.POS_X_BUFFER),
 		$Penguin.position.y + 256 + 128 * randi_range(0, 15)
 	)
+	if car_type == Car.CAR_TYPE.ANIMAL_CONTROL:
+		car.position.y = $Penguin.position.y - 500
+		car.position.x = $Penguin.position.x
 	car.set_sprite(car_type)
 	$Cars.add_child(car)
 
