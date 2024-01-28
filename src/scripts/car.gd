@@ -39,7 +39,6 @@ func _process(delta: float) -> void:
 			Vector2(self.target_x, viewport.position.y + viewport.size.y * 1.25),
 			self.speed * delta,
 		)
-		print(self.position)
 	else:
 		self.position.x += self.speed * delta
 
