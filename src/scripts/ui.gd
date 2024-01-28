@@ -81,6 +81,8 @@ func set_mode(mode: MODE) -> void:
 			$StartButton.hide()
 			$Highscore.hide()
 
+	self.update_upgrade_buttons()
+
 
 func _on_purchased_upgrade_button(price: int, upgrade_num: int) -> void:
 	self.spend_currency(price)
