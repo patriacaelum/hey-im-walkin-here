@@ -11,9 +11,11 @@ var fancy_car_spawn_rate: float = 0.2
 
 const initial_rest_y: int = 3000
 var rest_multiplier: float = 1.1
+var car_spawn_multiplier: float = 1.0
 var rest_y: int = 0
 
 const BOOST_SPEED: int = 250
+const CAR_SPAWN_MULTIPLIER_CHANGE_RATE: float = 0.9
 
 
 func _ready() -> void:
@@ -32,6 +34,7 @@ func _physics_process(delta: float) -> void:
 		var view_y: int = int(self.get_viewport_rect().size.y)
 		self.__spawn_banana_peels($Penguin.position.y + view_y)
 		self.banana_peel_block += view_y
+		self.car_spawn_multiplier *= self.CAR_SPAWN_MULTIPLIER_CHANGE_RATE
 
 	$UI.update_score(int($Penguin.position.y / 10))
 
@@ -57,6 +60,7 @@ func _on_ui_started() -> void:
 				child.queue_free()
 		rest_y = 0
 		rest_multiplier = 1.1
+		self.car_spawn_multipler = 1.0
 		self._spawn_next_rest()
 	
 	# Begin
@@ -110,7 +114,7 @@ func _on_car_spawn_timer_timeout() -> void:
 	car.set_sprite(car_type)
 	$Cars.add_child(car)
 
-	$CarSpawnTimer.start(0.2)
+	$CarSpawnTimer.start(0.2 * self.car_spawn_multiplier)
 
 
 func _on_banana_peel_boost(time):
