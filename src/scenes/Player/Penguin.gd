@@ -9,6 +9,7 @@ signal currency_collected(amount: int)
 var walking: bool = false
 var armour: int = 0
 var animation_state: String = "walking"
+var bp_ratio: float = 1.0
 var upgrades: Array = []
 
 const SPEED = 100.0
@@ -77,4 +78,6 @@ func _add_upgrade(upgrade):
 func _apply_upgrade(upgrade):
 	if upgrade == GLOBALS.Upgrades.GRANDMA_ARMOUR:
 		$Grandma.is_purchased = true
+	if upgrade == GLOBALS.Upgrades.MORE_BANANAS:
+		self.bp_ratio += 0.25
 	
