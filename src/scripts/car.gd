@@ -14,6 +14,7 @@ enum CAR_TYPE {
 
 var pos: Vector2
 var broken: bool = false
+var price: int = 5
 
 var __car_type: CAR_TYPE = CAR_TYPE.NORMAL
 

@@ -3,22 +3,20 @@ extends CharacterBody2D
 
 
 signal penguin_collision(body)
+signal currency_collected(amount: int)
+
 
 var walking: bool = false
-var armour: bool = false
+var armour: int = 0
 var animation_state: String = "walking"
-
-var globals;
-var UPGRADES_ENUM;
+var upgrades: Array = []
 
 const SPEED = 100.0
-var upgrades = []
 
 
 func _ready() -> void:
-	globals = get_node("/root/GLOBALS")
-	UPGRADES_ENUM = globals.Upgrades
 	self.velocity.y = SPEED
+
 
 func _physics_process(delta: float) -> void:
 	if not self.walking:
@@ -33,8 +31,18 @@ func _physics_process(delta: float) -> void:
 	self.move_and_slide()
 	$AnimationPlayer.play(animation_state)
 
+
 func _on_area_2d_body_entered(body):
-	penguin_collision.emit(body);
+	if not body is Car:
+		return
+
+	self.remove_armour()
+	self.currency_collected.emit(body.price)
+
+	if self.armour <= 0:
+		self.walking = false
+		penguin_collision.emit(body)
+
 
 func play_timed_animation(animation: String, time: float) -> void:
 	$AnimationChangeTimer.wait_time = time
@@ -45,28 +53,25 @@ func play_timed_animation(animation: String, time: float) -> void:
 	animation_state = "walking"
 
 
-	
+func remove_armour() -> void:
+	armour -= 1
+	$Grandma.armour_active = false
 
-func set_armour(value: bool) -> void:
-	armour = value
-	$Grandma.armour_active = value
 
 func _reset():
 	self.position = Vector2(636, 57)
-	self.set_armour($Grandma.is_purchased)
+	if $Grandma.is_purchased:
+		self.armour += 1
+
 
 func _add_upgrade(upgrade):
 	# Add and track upgrade on penguin
 	upgrades.append(upgrade)
 	self._apply_upgrade(upgrade)
 
+
 func _apply_upgrade(upgrade):
-	if (upgrade == UPGRADES_ENUM.GRANDMA_ARMOUR):
-		$Grandma.is_purchased = true;
-		self.set_armour(true)
+	if upgrade == GLOBALS.Upgrades.GRANDMA_ARMOUR:
+		$Grandma.is_purchased = true
+		self.armour += 1
 	
-	
-
-
-
-
