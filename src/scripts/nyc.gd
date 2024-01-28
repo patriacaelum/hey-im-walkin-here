@@ -12,6 +12,7 @@ var fancy_car_spawn_rate: float = 0.2
 func _ready() -> void:
 	$UI.started.connect(self._on_ui_started)
 	$CarSpawnTimer.timeout.connect(self._on_car_spawn_timer_timeout)
+	$Penguin.currency_collected.connect(self._on_penguin_currency_collected)
 
 	var view_y = int(self.get_viewport_rect().size.y)
 	self.__spawn_banana_peels(view_y)
@@ -46,15 +47,8 @@ func _on_ui_started() -> void:
 
 
 func _on_crash_penguin(body) -> void:
-
-	# Destroy armour on penguin
-	if body in $Cars.get_children():
-		if $Penguin.armour:
-			$Penguin.set_armour(false)
-		else:
-			$Penguin.walking = false
-			$CarSpawnTimer.stop()
-			$UI.show()
+	$CarSpawnTimer.stop()
+	$UI.show()
 	
 
 func _on_ui_upgrade_purchased(upgrade) -> void:
@@ -97,3 +91,6 @@ func __spawn_banana_peels(y_min: int) -> void:
 		)
 		self.add_child(bp)
 
+
+func _on_penguin_currency_collected(amount: int) -> void:
+	$UI.add_currency(amount)
