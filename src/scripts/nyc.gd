@@ -57,8 +57,6 @@ func _on_crash_penguin(body) -> void:
 func _on_ui_upgrade_purchased(upgrade) -> void:
 	# Set upgrade on penguin
 	$Penguin._add_upgrade(upgrade)
-	pass
-	
 
 
 func _on_car_spawn_timer_timeout() -> void:
