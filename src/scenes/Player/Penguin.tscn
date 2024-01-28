@@ -289,7 +289,9 @@ vframes = 2
 
 [node name="AnimationChangeTimer" type="Timer" parent="."]
 
-[node name="Grandma" parent="." instance=ExtResource("3_gs3d2")]
+[node name="GrandmaHolder" type="Node2D" parent="."]
+
+[node name="Grandma" parent="GrandmaHolder" instance=ExtResource("3_gs3d2")]
 position = Vector2(25, 14)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

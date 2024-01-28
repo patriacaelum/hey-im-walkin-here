@@ -33,6 +33,9 @@ func _physics_process(delta: float) -> void:
 	
 	self.move_and_slide()
 	$AnimationPlayer.play(animation_state)
+	
+	if animation_state == "slipping":
+		$GrandmaHolder.rotate(delta * 20)
 
 
 func _on_area_2d_body_entered(body):
@@ -59,19 +62,31 @@ func play_timed_animation(animation: String, time: float) -> void:
 	$AnimationChangeTimer.start()
 	
 	animation_state = animation
-	await $AnimationChangeTimer.timeout
-	animation_state = "walking"
+	$GrandmaHolder/Grandma.play_animation('slipping')
 
+	await $AnimationChangeTimer.timeout
+	
+	# Reset to walking
+	animation_state = "walking"
+	$GrandmaHolder/Grandma.play_animation('walking')
+	$GrandmaHolder.rotation = 0
+	
 
 func remove_armour() -> void:
-	armour -= 1
-	$Grandma.armour_active = false
-	
-func restore_armour():
-	if $Grandma.is_purchased:
+
+	$GrandmaHolder/Grandma.armour_active = false
+
+
+func _reset():
+	self.position = Vector2(636, 57)
+	self.velocity.y = SPEED
+	self.animation_state = "walking"
+	print('resetting level')
+	$GrandmaHolder.rotation = 0
+	if $GrandmaHolder/Grandma.is_purchased:
 		# If armour is +=1 after a reset you'll die in one hit
 		armour = 1
-		$Grandma.armour_active = true
+		$GrandmaHolder/Grandma.armour_active = true
 
 
 func _reset():
@@ -89,7 +104,8 @@ func _add_upgrade(upgrade):
 
 func _apply_upgrade(upgrade):
 	if upgrade == GLOBALS.Upgrades.GRANDMA_ARMOUR:
-		$Grandma.is_purchased = true
+		$GrandmaHolder/Grandma.is_purchased = true
 		self.armour += 1
+
 	if upgrade == GLOBALS.Upgrades.MORE_BANANAS:
 		self.bp_ratio += 0.25

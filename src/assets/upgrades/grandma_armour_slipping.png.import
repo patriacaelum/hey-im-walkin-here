@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://cpvppw8evqb7w"
-path="res://.godot/imported/decal-walk.png-b326d721b2ed2bd0a889215d7f1f1be4.ctex"
+uid="uid://dvtjhnmxe8udc"
+path="res://.godot/imported/grandma_armour_slipping.png-28a853459859015222b60fc0e9852be5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/decals/decal-walk.png"
-dest_files=["res://.godot/imported/decal-walk.png-b326d721b2ed2bd0a889215d7f1f1be4.ctex"]
+source_file="res://assets/upgrades/grandma_armour_slipping.png"
+dest_files=["res://.godot/imported/grandma_armour_slipping.png-28a853459859015222b60fc0e9852be5.ctex"]
 
 [params]
 

@@ -9,6 +9,8 @@ func _ready():
 	$AnimationPlayer.play("walking")
 	pass # Replace with function body.
 
+func play_animation(animation: String):
+	$AnimationPlayer.play(animation)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
