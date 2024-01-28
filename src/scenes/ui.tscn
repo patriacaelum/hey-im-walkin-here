@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://3o5lehmuqdll"]
+[gd_scene load_steps=8 format=3 uid="uid://3o5lehmuqdll"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_004rj"]
 [ext_resource type="PackedScene" uid="uid://c8ib6wf4jexl7" path="res://scenes/upgrade_button.tscn" id="2_kbvb3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://b0v2x7nt8jqnd" path="res://assets/button_theme.tres" id="4_ddwsg"]
 [ext_resource type="Texture2D" uid="uid://cxvwbkbiyfnqy" path="res://assets/objects/banana_peel.png" id="4_moi42"]
 [ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="5_h4wu0"]
+[ext_resource type="Texture2D" uid="uid://c3q5pup8jyrrq" path="res://assets/upgrades/thorzone_icon.png" id="6_a4sft"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_004rj")
@@ -34,6 +35,13 @@ icon = ExtResource("4_moi42")
 script = ExtResource("5_h4wu0")
 price = 5
 upgrade_num = 1
+
+[node name="UpgradeButton2" type="Button" parent="GridContainer"]
+layout_mode = 2
+icon = ExtResource("6_a4sft")
+script = ExtResource("5_h4wu0")
+price = 25
+upgrade_num = 2
 
 [node name="FreeMoney" type="Button" parent="."]
 visible = false
