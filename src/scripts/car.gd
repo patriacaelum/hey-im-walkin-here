@@ -21,6 +21,7 @@ var __car_type: CAR_TYPE = CAR_TYPE.NORMAL
 const SPEED_MAX: int = 150
 const SPEED_MIN: int = 500
 const POS_X_BUFFER: int = 256
+const POS_Y_BUFFER: int = 256
 
 	
 func _ready() -> void:
@@ -76,10 +77,11 @@ func _on_area_2d_body_entered(body: Node) -> void:
 	self._disable_car()
 
 func __out_of_bounds() -> bool:
+	var upper_boundary: bool = self.get_viewport_rect().position.y > self.position.y - self.POS_Y_BUFFER
 	var left_boundary: bool = self.position.x < -self.POS_X_BUFFER
 	var right_boundary: bool = self.position.x > self.get_viewport_rect().size.x + self.POS_X_BUFFER
 
-	return left_boundary or right_boundary
+	return upper_boundary or left_boundary or right_boundary
 
 
 func _on_area_2d_area_entered(area):
