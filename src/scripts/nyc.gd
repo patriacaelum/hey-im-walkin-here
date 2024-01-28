@@ -116,10 +116,10 @@ func _on_resting():
 	for child: Node in $Cars.get_children():
 		if child is Car:
 			child._disable_car()
-	$UI.show()
+	$UI.set_mode(UI.MODE.UPGRADE)
 	self._spawn_next_rest()
 	$Penguin._resting_pause()
-	pass
+
 
 func _spawn_next_rest() -> void:
 	var rs: RestingSpot = RestingScene.instantiate()
